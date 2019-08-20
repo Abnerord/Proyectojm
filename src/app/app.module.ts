@@ -16,6 +16,8 @@ import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,7 @@ import {LocationStrategy, PathLocationStrategy} from '@angular/common';
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     HttpModule,
-    ScrollModule
+    ScrollModule,
   ],
   exports: [ScrollModule],
   providers: [ 

@@ -9,11 +9,14 @@ import { CapitulounoComponent } from './capitulouno/capitulouno.component';
 import { CapitulodosComponent } from './capitulodos/capitulodos.component';
 import { CapitulotresComponent } from './capitulotres/capitulotres.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(Titulounoroutes),
-    SharedModule
+    SharedModule,
+    
+
   ],
   declarations: [
     TitulounoComponent,

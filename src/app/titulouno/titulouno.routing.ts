@@ -15,7 +15,7 @@ export const Titulounoroutes: Routes = [
             path: 'Capitulouno',
             component: CapitulounoComponent,
             data: {
-                breadcrumb: 'Capitulo I',
+                breadcrumb: 'Capitulo I ',
                 status: true
             }
         },

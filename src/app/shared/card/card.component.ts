@@ -14,12 +14,15 @@ export class CardComponent implements OnInit {
   @Input() blockClass: string;
   @Input() cardClass: string;
   @Input() classHeader = false;
-  cardToggle = 'expanded';
-  cardClose = 'open';
-  constructor() { }
+  @Input() cardToggle: string;
 
-  ngOnInit() {
+  cardClose = 'open';
+  
+  constructor() { 
   }
+
+  
+  ngOnInit() { }
 
   toggleCard() {
     this.cardToggle = this.cardToggle === 'collapsed' ? 'expanded' : 'collapsed';
