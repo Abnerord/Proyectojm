@@ -10,15 +10,19 @@ import { CapitulodosComponent } from './capitulodos/capitulodos.component';
 import { CapitulotresComponent } from './capitulotres/capitulotres.component';
 
 
+import { BarRatingModule } from "ng2-bar-rating";
+
+
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(Titulounoroutes),
     SharedModule,
-    
+    BarRatingModule 
 
   ],
-  declarations: [
+  declarations: [                          
     TitulounoComponent,
     CapitulounoComponent,
     CapitulodosComponent,

@@ -1,3 +1,1556 @@
-<p>
-  capitulotres works!
-</p>
+<div class="row">
+    <div class="col-sm-5">
+      <h5> Objeto, Alcance, Ambito de Aplicación y Principios Rectores</h5>
+    </div>
+    <div class="col-sm-2 col-xl-2">
+      <h5>Total</h5>
+      <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+    </div>
+    <div class="col-sm-3">
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="fecha" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-success" (click)="d.toggle()" type="button">FECHA DE ESTUDIO</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  
+  <br> 
+  <!-- Articulo 6 -->
+   <app-card [title]="'Articulo 6. Marco de Trabajo'" [cardToggle]="'collapsed'" >
+   
+     <div class="row">
+        <div class="col-sm-12 col-xl-12 text-center">   
+        <h4 class="sub-title">Preguntas</h4>   
+       
+          <ngb-tabset>
+            <ngb-tab title="1">
+              <ng-template ngbTabContent>
+                <div class="form-control text-center">
+                  ¿Cuenta con un marco de referencia de control y de mejores prácticas para ayudar a monitorear y mejorar las actividades críticas de las TI?
+                </div>
+              <div class="row">
+                <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[0]">
+                  <br>
+                  <label ngbButtonLabel class="btn-success  btn-sm">
+                    <input ngbButton type="radio" [value]="true"> SI
+                  </label>
+                  <label ngbButtonLabel class="btn-success  btn-sm">
+                    <input ngbButton type="radio" [value]="false"> NO
+                  </label>                  
+                </div>                
+                <div class="col-sm-4 col-xl-4">
+                    <ngb-rating  [(rate)]="currentRate[0]" [readonly]="!validacion[0]" max="5"  >
+                        <ng-template let-fill="fill" >
+                            <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                          </ng-template>
+                    </ngb-rating>
+                    <hr>
+                    <pre>Nivel: <b>{{currentRate[0]}}</b></pre>
+                </div>
+                <div class="col-sm-2 col-xl-2">
+                  <br>
+                  <h5>Subtotal</h5>
+                  <p><ngb-progressbar [type]="color[0]" [value]="subtotal[0]" [striped]="true" [animated]="true"><i>{{subtotal[0]}}%</i></ngb-progressbar></p>
+                  <h5>Puntuación: {{subpuntuacion[0]}}</h5>
+                </div>
+              </div>
+              </ng-template>
+            </ngb-tab>
+           
+            
+                <ngb-tab title="2">
+                <ng-template ngbTabContent>
+                    <div class="form-control text-center">
+                        ¿Se mide el desempeño de las Tecnologias de la Informacion para detectar los problemas antes de que sea demasiado tarde?
+                      </div>
+                      <div class="row">
+                          <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[1]">
+                            <br>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="true"> SI
+                            </label>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="false"> NO
+                            </label>
+                          </div>
+                          <div class="col-sm-4 col-xl-4">
+                              <ngb-rating  [(rate)]="currentRate[1]" [readonly]="!validacion[1]" max="5"  >
+                                  <ng-template let-fill="fill" >
+                                      <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                    </ng-template>
+                              </ngb-rating>
+                              <hr>
+                              <pre>Nivel: <b>{{currentRate[1]}}</b></pre>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Subtotal</h5>
+                            <p><ngb-progressbar [type]="color[0]" [value]="subtotal[0]" [striped]="true" [animated]="true"><i>{{subtotal[0]}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{subpuntuacion[0]}}</h5>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Total</h5>
+                            <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{puntuacion}}</h5>
+                          </div>
+                        </div>
+                </ng-template>
+              </ngb-tab>
+  
+            
+            <ngb-tab title="3">
+                <ng-template ngbTabContent>
+                    <div class="form-control text-center">
+                        ¿Se miden y reportan los riesgos, el control, el cumplimiento y el desempeño?
+                      </div>
+                      <div class="row">
+                          <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[2]">
+                            <br>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="true"> SI
+                            </label>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="false"> NO
+                            </label>
+                          </div>
+                          <div class="col-sm-4 col-xl-4">
+                              <ngb-rating  [(rate)]="currentRate[2]" [readonly]="!validacion[2]" max="5"  >
+                                  <ng-template let-fill="fill" >
+                                      <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                    </ng-template>
+                              </ngb-rating>
+                              <hr>
+                              <pre>Nivel: <b>{{currentRate[2]}}</b></pre>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Subtotal</h5>
+                            <p><ngb-progressbar [type]="color[0]" [value]="subtotal[0]" [striped]="true" [animated]="true"><i>{{subtotal[0]}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{subpuntuacion[0]}}</h5>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Total</h5>
+                            <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{puntuacion}}</h5>
+                          </div>
+                        </div>
+                </ng-template>
+              </ngb-tab>
+  
+              <ngb-tab title="4">
+                  <ng-template ngbTabContent>
+                      <div class="form-control text-center">
+                          ¿Se realiza una revision de efectividad de los controles existentes como minimo una vez al año?
+                        </div>
+                       <div class="row">
+                          <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[3]">
+                            <br>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="true"> SI
+                            </label>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="false"> NO
+                            </label>
+                          </div>
+                          <div class="col-sm-4 col-xl-4">
+                              <ngb-rating  [(rate)]="currentRate[3]" [readonly]="!validacion[3]" max="5"  >
+                                  <ng-template let-fill="fill" >
+                                      <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                    </ng-template>
+                              </ngb-rating>
+                              <hr>
+                              <pre>Nivel: <b>{{currentRate[3]}}</b></pre>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Subtotal</h5>
+                            <p><ngb-progressbar [type]="color[0]" [value]="subtotal[0]" [striped]="true" [animated]="true"><i>{{subtotal[0]}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{subpuntuacion[0]}}</h5>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Total</h5>
+                            <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{puntuacion}}</h5>
+                          </div>
+                        </div>
+                  </ng-template>
+                </ngb-tab>
+          </ngb-tabset>
+        </div>
+    </div>
+  </app-card>
+  <!-- Articulo 7 -->
+  <app-card [title]="'Articulo 7. Estructura'" [cardToggle]="'collapsed'" >
+   
+      <div class="row">
+         <div class="col-sm-12 col-xl-12 text-center">   
+         <h4 class="sub-title">Preguntas</h4>   
+        
+           <ngb-tabset>
+             <ngb-tab title="1">
+               <ng-template ngbTabContent>
+                 <div class="form-control text-center">
+                    Existe una politica para establecer una unidad funicional de seguridad cibernetica y de la informacion y sus respectivas areas especializadas
+                 </div>
+               <div class="row">
+                 <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[4]">
+                   <br>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="true"> SI
+                   </label>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="false"> NO
+                   </label>
+                 </div>
+                 <div class="col-sm-4 col-xl-4">
+                     <ngb-rating  [(rate)]="currentRate[4]" [readonly]="!validacion[4]" max="5"  >
+                         <ng-template let-fill="fill" >
+                             <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                           </ng-template>
+                     </ngb-rating>
+                     <hr>
+                     <pre>Nivel: <b>{{currentRate[4]}}</b></pre>
+                 </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Subtotal</h5>
+                   <p><ngb-progressbar [type]="color[1]" [value]="subtotal[1]" [striped]="true" [animated]="true"><i>{{subtotal[1]}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{subpuntuacion[1]}}</h5>
+                  </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Total</h5>
+                   <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{puntuacion}}</h5>
+                 </div>
+               </div>
+               </ng-template>
+             </ngb-tab>
+            
+             
+                 <ngb-tab title="2">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        Existen politicas para establecer un ente encargado de esta Unidad de seguridad de seguridad cibernetica y de la informacion 
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[5]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[5]" [readonly]="!validacion[5]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[5]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[1]" [value]="subtotal[1]" [striped]="true" [animated]="true"><i>{{subtotal[1]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[1]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+             
+             <ngb-tab title="3">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        ¿Se realiza una supervicion periodica por parte del consejo u organo societario hacia esta estructura de seguridad Cibernetica?
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[6]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[6]" [readonly]="!validacion[6]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[2]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[1]" [value]="subtotal[1]" [striped]="true" [animated]="true"><i>{{subtotal[1]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[1]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+               <ngb-tab title="4">
+                   <ng-template ngbTabContent>
+                       <div class="form-control text-center">
+                          Existe un procedimiento para verficiar la independencia de esta estructura sobre las areas de tecnologias de la información, negocio y operaciones.
+                         </div>
+                        <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[7]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[7]" [readonly]="!validacion[7]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[7]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[1]" [value]="subtotal[1]" [striped]="true" [animated]="true"><i>{{subtotal[1]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[1]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                   </ng-template>
+                 </ngb-tab>
+  
+                 <ngb-tab title="5">
+                    <ng-template ngbTabContent>
+                        <div class="form-control text-center">
+                            Al no existir un comité funcional  ¿existe un comité de gestion de riesgos u otro que se encargue de estas funciones? Como un plan B para la de continuidad de negocios
+                          </div>
+                         <div class="row">
+                            <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[8]">
+                              <br>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="true"> SI
+                              </label>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="false"> NO
+                              </label>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <ngb-rating  [(rate)]="currentRate[8]" [readonly]="!validacion[8]" max="5"  >
+                                    <ng-template let-fill="fill" >
+                                        <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                      </ng-template>
+                                </ngb-rating>
+                                <hr>
+                                <pre>Nivel: <b>{{currentRate[8]}}</b></pre>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Subtotal</h5>
+                              <p><ngb-progressbar [type]="color[1]" [value]="subtotal[1]" [striped]="true" [animated]="true"><i>{{subtotal[1]}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{subpuntuacion[1]}}</h5>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Total</h5>
+                              <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{puntuacion}}</h5>
+                            </div>
+                          </div>
+                    </ng-template>
+                  </ngb-tab>
+           </ngb-tabset>
+         </div>
+     </div>
+   </app-card>
+  <!-- Articulo 8 -->
+  <app-card [title]="'Articulo 8.  Aprobación del programa de Seguridad Cibernetica y de la Información'" [cardToggle]="'collapsed'" >
+   
+      <div class="row">
+         <div class="col-sm-12 col-xl-12 text-center">   
+         <h4 class="sub-title">Preguntas</h4>   
+        
+           <ngb-tabset>
+             <ngb-tab title="1">
+               <ng-template ngbTabContent>
+                 <div class="form-control text-center">
+                    ¿Las Politicas del programa de seguridad Cibernetica y de la Informacion son sometidas para su aprobación al consejo u organo societario?
+                 </div>
+               <div class="row">
+                 <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[9]">
+                   <br>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="true"> SI
+                   </label>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="false"> NO
+                   </label>
+                 </div>
+                 <div class="col-sm-4 col-xl-4">
+                     <ngb-rating  [(rate)]="currentRate[9]" [readonly]="!validacion[9]" max="5"  >
+                         <ng-template let-fill="fill" >
+                             <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                           </ng-template>
+                     </ngb-rating>
+                     <hr>
+                     <pre>Nivel: <b>{{currentRate[9]}}</b></pre>
+                 </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Subtotal</h5>
+                   <p><ngb-progressbar [type]="color[2]" [value]="subtotal[2]" [striped]="true" [animated]="true"><i>{{subtotal[2]}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{subpuntuacion[2]}}</h5>
+                  </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Total</h5>
+                   <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{puntuacion}}</h5>
+                 </div>
+               </div>
+               </ng-template>
+             </ngb-tab>
+            
+             
+                 <ngb-tab title="2">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        ¿El comité funcional es el encargado del desarrollo del programa de seguridad?
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[10]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[10]" [readonly]="!validacion[10]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[10]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[2]" [value]="subtotal[2]" [striped]="true" [animated]="true"><i>{{subtotal[2]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[2]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+             
+             <ngb-tab title="3">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        ¿Existe un procedimiento para la aprobacion  de un nuevo reglamento?
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[11]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[11]" [readonly]="!validacion[11]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[11]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[2]" [value]="subtotal[2]" [striped]="true" [animated]="true"><i>{{subtotal[2]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[2]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+               <ngb-tab title="4">
+                   <ng-template ngbTabContent>
+                       <div class="form-control text-center">
+                          ¿Existe un procedimiento para verficiar la independencia de esta estructura sobre las areas de tecnologias de la información, negocio y operaciones.
+                         </div>
+                        <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[12]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[12]" [readonly]="!validacion[12]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[12]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[2]" [value]="subtotal[2]" [striped]="true" [animated]="true"><i>{{subtotal[2]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[2]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                   </ng-template>
+                 </ngb-tab>
+  
+                 <ngb-tab title="5">
+                    <ng-template ngbTabContent>
+                        <div class="form-control text-center">
+                            ¿Existe una sancion por usar reglamentos en post de su aprobación, para el comité funcional de Seguridad Cibernetica?
+                          </div>
+                         <div class="row">
+                            <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[13]">
+                              <br>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="true"> SI
+                              </label>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="false"> NO
+                              </label>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <ngb-rating  [(rate)]="currentRate[13]" [readonly]="!validacion[13]" max="5"  >
+                                    <ng-template let-fill="fill" >
+                                        <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                      </ng-template>
+                                </ngb-rating>
+                                <hr>
+                                <pre>Nivel: <b>{{currentRate[13]}}</b></pre>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Subtotal</h5>
+                              <p><ngb-progressbar [type]="color[2]" [value]="subtotal[2]" [striped]="true" [animated]="true"><i>{{subtotal[2]}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{subpuntuacion[2]}}</h5>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Total</h5>
+                              <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{puntuacion}}</h5>
+                            </div>
+                          </div>
+                    </ng-template>
+                  </ngb-tab>
+           </ngb-tabset>
+         </div>
+     </div>
+   </app-card>
+  
+  <!-- Articulo 9 -->
+  <app-card [title]="'Articulo 9.  Responsabilidades del Comite Funcional de Seguridad Cibernetica y de la Información'" [cardToggle]="'collapsed'" >
+   
+      <div class="row">
+         <div class="col-sm-12 col-xl-12 text-center">   
+         <h4 class="sub-title">Preguntas</h4>   
+        
+           <ngb-tabset>
+             <ngb-tab title="1">
+               <ng-template ngbTabContent>
+                 <div class="form-control text-center">
+                    ¿Existe un procedimiento para diseñar los lineamientos funcionales de seguridad cibernetica y de la informacion?
+                 </div>
+               <div class="row">
+                 <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[14]">
+                   <br>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="true"> SI
+                   </label>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="false"> NO
+                   </label>
+                 </div>
+                 <div class="col-sm-4 col-xl-4">
+                     <ngb-rating  [(rate)]="currentRate[14]" [readonly]="!validacion[14]" max="5"  >
+                         <ng-template let-fill="fill" >
+                             <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                           </ng-template>
+                     </ngb-rating>
+                     <hr>
+                     <pre>Nivel: <b>{{currentRate[14]}}</b></pre>
+                 </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Subtotal</h5>
+                   <p><ngb-progressbar [type]="color[3]" [value]="subtotal[3]" [striped]="true" [animated]="true"><i>{{subtotal[3]}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{subpuntuacion[3]}}</h5>
+                  </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Total</h5>
+                   <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{puntuacion}}</h5>
+                 </div>
+               </div>
+               </ng-template>
+             </ngb-tab>
+            
+             
+                 <ngb-tab title="2">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        ¿Existe un procedimiento para la aprobacion de politicas del programa de seguridad cibernetica y de  la informacion?
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[15]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[15]" [readonly]="!validacion[15]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[15]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[3]" [value]="subtotal[3]" [striped]="true" [animated]="true"><i>{{subtotal[3]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[3]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+             
+             <ngb-tab title="3">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        ¿Existe un control para evaluar la efectividad del programa de seguridad cibernetica y de la información ?
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[16]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[16]" [readonly]="!validacion[16]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[16]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[3]" [value]="subtotal[3]" [striped]="true" [animated]="true"><i>{{subtotal[3]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[3]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+               <ngb-tab title="4">
+                   <ng-template ngbTabContent>
+                       <div class="form-control text-center">
+                          ¿Existe un procedimiento para confirmar las desiciones para el tratamiento de riesgo propuestas por el oficial de seguridad cibernetica y de la informacion ?
+                         </div>
+                        <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[17]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[17]" [readonly]="!validacion[17]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[17]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[3]" [value]="subtotal[3]" [striped]="true" [animated]="true"><i>{{subtotal[3]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[3]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                   </ng-template>
+                 </ngb-tab>
+  
+                 <ngb-tab title="5">
+                    <ng-template ngbTabContent>
+                        <div class="form-control text-center">
+                            ¿Existe un procedimiento para comunicar al consejo u organo societario, resultados de las valoraciones del programa de seguridad cibernetica y de la informacion ?
+                          </div>
+                         <div class="row">
+                            <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[18]">
+                              <br>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="true"> SI
+                              </label>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="false"> NO
+                              </label>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <ngb-rating  [(rate)]="currentRate[18]" [readonly]="!validacion[18]" max="5"  >
+                                    <ng-template let-fill="fill" >
+                                        <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                      </ng-template>
+                                </ngb-rating>
+                                <hr>
+                                <pre>Nivel: <b>{{currentRate[18]}}</b></pre>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Subtotal</h5>
+                              <p><ngb-progressbar [type]="color[3]" [value]="subtotal[3]" [striped]="true" [animated]="true"><i>{{subtotal[3]}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{subpuntuacion[3]}}</h5>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Total</h5>
+                              <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{puntuacion}}</h5>
+                            </div>
+                          </div>
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab title="6">
+                      <ng-template ngbTabContent>
+                          <div class="form-control text-center">
+                              ¿Existe una politica que regule el cumplimiento de la comunicación entre la estructura del programa de seguridad y el consejo u organo societario?
+                            </div>
+                           <div class="row">
+                              <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[19]">
+                                <br>
+                                <label ngbButtonLabel class="btn-success  btn-sm">
+                                  <input ngbButton type="radio" [value]="true"> SI
+                                </label>
+                                <label ngbButtonLabel class="btn-success  btn-sm">
+                                  <input ngbButton type="radio" [value]="false"> NO
+                                </label>
+                              </div>
+                              <div class="col-sm-4 col-xl-4">
+                                  <ngb-rating  [(rate)]="currentRate[19]" [readonly]="!validacion[19]" max="5"  >
+                                      <ng-template let-fill="fill" >
+                                          <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                        </ng-template>
+                                  </ngb-rating>
+                                  <hr>
+                                  <pre>Nivel: <b>{{currentRate[19]}}</b></pre>
+                              </div>
+                              <div class="col-sm-2 col-xl-2">
+                                <br>
+                                <h5>Subtotal</h5>
+                                <p><ngb-progressbar [type]="color[3]" [value]="subtotal[3]" [striped]="true" [animated]="true"><i>{{subtotal[3]}}%</i></ngb-progressbar></p>
+                                <h5>Puntuación: {{subpuntuacion[3]}}</h5>
+                              </div>
+                              <div class="col-sm-2 col-xl-2">
+                                <br>
+                                <h5>Total</h5>
+                                <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                                <h5>Puntuación: {{puntuacion}}</h5>
+                              </div>
+                            </div>
+                      </ng-template>
+                    </ngb-tab>
+           </ngb-tabset>
+         </div>
+     </div>
+   </app-card>
+  
+ <!-- Articulo 10 -->
+ <app-card [title]="'Articulo 10.  Oficial de  Seguridad Cibernetica y de la informacion '" [cardToggle]="'collapsed'" >
+   
+    <div class="row">
+       <div class="col-sm-12 col-xl-12 text-center">   
+       <h4 class="sub-title">Preguntas</h4>   
+      
+         <ngb-tabset>
+           <ngb-tab title="1">
+             <ng-template ngbTabContent>
+               <div class="form-control text-center">
+                  ¿Existe un politica que establesca el perfil del oficial de la unidad funcional de seguridad cibernetica y de la información?
+               </div>
+             <div class="row">
+               <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[20]">
+                 <br>
+                 <label ngbButtonLabel class="btn-success  btn-sm">
+                   <input ngbButton type="radio" [value]="true"> SI
+                 </label>
+                 <label ngbButtonLabel class="btn-success  btn-sm">
+                   <input ngbButton type="radio" [value]="false"> NO
+                 </label>
+               </div>
+               <div class="col-sm-4 col-xl-4">
+                   <ngb-rating  [(rate)]="currentRate[20]" [readonly]="!validacion[20]" max="5"  >
+                       <ng-template let-fill="fill" >
+                           <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                         </ng-template>
+                   </ngb-rating>
+                   <hr>
+                   <pre>Nivel: <b>{{currentRate[20]}}</b></pre>
+               </div>
+               <div class="col-sm-2 col-xl-2">
+                 <br>
+                 <h5>Subtotal</h5>
+                 <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                 <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                </div>
+               <div class="col-sm-2 col-xl-2">
+                 <br>
+                 <h5>Total</h5>
+                 <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                 <h5>Puntuación: {{puntuacion}}</h5>
+                </div>
+             </div>
+             </ng-template>
+           </ngb-tab>
+          
+           
+               <ngb-tab title="2">
+               <ng-template ngbTabContent>
+                   <div class="form-control text-center">
+                      ¿Existe un control de las aptitudes con las que debe contar el perfil del oficial de seguridad cibernetica y de la información?
+                     </div>
+                     <div class="row">
+                         <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[21]">
+                           <br>
+                           <label ngbButtonLabel class="btn-success  btn-sm">
+                             <input ngbButton type="radio" [value]="true"> SI
+                           </label>
+                           <label ngbButtonLabel class="btn-success  btn-sm">
+                             <input ngbButton type="radio" [value]="false"> NO
+                           </label>
+                         </div>
+                         <div class="col-sm-4 col-xl-4">
+                             <ngb-rating  [(rate)]="currentRate[21]" [readonly]="!validacion[21]" max="5"  >
+                                 <ng-template let-fill="fill" >
+                                     <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                   </ng-template>
+                             </ngb-rating>
+                             <hr>
+                             <pre>Nivel: <b>{{currentRate[21]}}</b></pre>
+                         </div>
+                         <div class="col-sm-2 col-xl-2">
+                           <br>
+                           <h5>Subtotal</h5>
+                           <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                           <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                          </div>
+                         <div class="col-sm-2 col-xl-2">
+                           <br>
+                           <h5>Total</h5>
+                           <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                           <h5>Puntuación: {{puntuacion}}</h5>
+                         </div>
+                       </div>
+               </ng-template>
+             </ngb-tab>
+ 
+           
+           <ngb-tab title="3">
+               <ng-template ngbTabContent>
+                   <div class="form-control text-center">
+                      ¿Existe una politica que establezca cuales son las responsabilidades del ofical encargado del programa de seguridad cibernetica y de la información ?
+                     </div>
+                     <div class="row">
+                         <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[22]">
+                           <br>
+                           <label ngbButtonLabel class="btn-success  btn-sm">
+                             <input ngbButton type="radio" [value]="true"> SI
+                           </label>
+                           <label ngbButtonLabel class="btn-success  btn-sm">
+                             <input ngbButton type="radio" [value]="false"> NO
+                           </label>
+                         </div>
+                         <div class="col-sm-4 col-xl-4">
+                             <ngb-rating  [(rate)]="currentRate[22]" [readonly]="!validacion[22]" max="5"  >
+                                 <ng-template let-fill="fill" >
+                                     <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                   </ng-template>
+                             </ngb-rating>
+                             <hr>
+                             <pre>Nivel: <b>{{currentRate[22]}}</b></pre>
+                         </div>
+                         <div class="col-sm-2 col-xl-2">
+                           <br>
+                           <h5>Subtotal</h5>
+                           <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                           <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                          </div>
+                         <div class="col-sm-2 col-xl-2">
+                           <br>
+                           <h5>Total</h5>
+                           <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                           <h5>Puntuación: {{puntuacion}}</h5>
+                         </div>
+                       </div>
+               </ng-template>
+             </ngb-tab>
+ 
+             <ngb-tab title="4">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        ¿Existen sanciones establecidas por el incumplimiento de deberes y responsabilidades hacia el oficial de seguridad cibernetica y de la información?
+                       </div>
+                      <div class="row">
+                         <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[23]">
+                           <br>
+                           <label ngbButtonLabel class="btn-success  btn-sm">
+                             <input ngbButton type="radio" [value]="true"> SI
+                           </label>
+                           <label ngbButtonLabel class="btn-success  btn-sm">
+                             <input ngbButton type="radio" [value]="false"> NO
+                           </label>
+                         </div>
+                         <div class="col-sm-4 col-xl-4">
+                             <ngb-rating  [(rate)]="currentRate[23]" [readonly]="!validacion[23]" max="5"  >
+                                 <ng-template let-fill="fill" >
+                                     <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                   </ng-template>
+                             </ngb-rating>
+                             <hr>
+                             <pre>Nivel: <b>{{currentRate[23]}}</b></pre>
+                         </div>
+                         <div class="col-sm-2 col-xl-2">
+                           <br>
+                           <h5>Subtotal</h5>
+                           <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                           <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                          </div>
+                         <div class="col-sm-2 col-xl-2">
+                           <br>
+                           <h5>Total</h5>
+                           <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                           <h5>Puntuación: {{puntuacion}}</h5>
+                         </div>
+                       </div>
+                 </ng-template>
+               </ngb-tab>
+
+               <ngb-tab title="5">
+                  <ng-template ngbTabContent>
+                      <div class="form-control text-center">
+                          ¿Se tiene establecido que el oficial de seguridad cibernetica y de la información sera miembro y secretario del comité funcional.?
+                        </div>
+                       <div class="row">
+                          <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[24]">
+                            <br>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="true"> SI
+                            </label>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="false"> NO
+                            </label>
+                          </div>
+                          <div class="col-sm-4 col-xl-4">
+                              <ngb-rating  [(rate)]="currentRate[24]" [readonly]="!validacion[24]" max="5"  >
+                                  <ng-template let-fill="fill" >
+                                      <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                    </ng-template>
+                              </ngb-rating>
+                              <hr>
+                              <pre>Nivel: <b>{{currentRate[24]}}</b></pre>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Subtotal</h5>
+                            <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Total</h5>
+                            <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{puntuacion}}</h5>
+                          </div>
+                        </div>
+                  </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="6">
+                    <ng-template ngbTabContent>
+                        <div class="form-control text-center">
+                            ¿Existe un procedimiento para que el Oficial de seguridad cibernetica y de la informacion reporte periodicamente al CSIRT la situacion de la infraestructura tecnologica a su cargo.?
+                          </div>
+                         <div class="row">
+                            <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[25]">
+                              <br>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="true"> SI
+                              </label>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="false"> NO
+                              </label>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <ngb-rating  [(rate)]="currentRate[25]" [readonly]="!validacion[25]" max="5"  >
+                                    <ng-template let-fill="fill" >
+                                        <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                      </ng-template>
+                                </ngb-rating>
+                                <hr>
+                                <pre>Nivel: <b>{{currentRate[25]}}</b></pre>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Subtotal</h5>
+                              <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Total</h5>
+                              <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{puntuacion}}</h5>
+                            </div>
+                          </div>
+                    </ng-template>
+                  </ngb-tab>
+
+                  <ngb-tab title="7">
+                  <ng-template ngbTabContent>
+                      <div class="form-control text-center">
+                          ¿Existe una politica que establezca que otra persona pueda desempeñar el cargo de Ofical interino para cumplir obligaciones y responsabilidades de este cargo.?
+                        </div>
+                       <div class="row">
+                          <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[26]">
+                            <br>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="true"> SI
+                            </label>
+                            <label ngbButtonLabel class="btn-success  btn-sm">
+                              <input ngbButton type="radio" [value]="false"> NO
+                            </label>
+                          </div>
+                          <div class="col-sm-4 col-xl-4">
+                              <ngb-rating  [(rate)]="currentRate[26]" [readonly]="!validacion[26]" max="5"  >
+                                  <ng-template let-fill="fill" >
+                                      <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                    </ng-template>
+                              </ngb-rating>
+                              <hr>
+                              <pre>Nivel: <b>{{currentRate[26]}}</b></pre>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Subtotal</h5>
+                            <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                          </div>
+                          <div class="col-sm-2 col-xl-2">
+                            <br>
+                            <h5>Total</h5>
+                            <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                            <h5>Puntuación: {{puntuacion}}</h5>
+                          </div>
+                        </div>
+                  </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="8">
+                    <ng-template ngbTabContent>
+                        <div class="form-control text-center">
+                            ¿Existe un control de las aptitudes y requisitos que debe contar un ejecutivo para desempeñar el cargo de Oficial se seguridad cibernetica y de la informacion? 
+                          </div>
+                         <div class="row">
+                            <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[27]">
+                              <br>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="true"> SI
+                              </label>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="false"> NO
+                              </label>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <ngb-rating  [(rate)]="currentRate[27]" [readonly]="!validacion[27]" max="5"  >
+                                    <ng-template let-fill="fill" >
+                                        <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                      </ng-template>
+                                </ngb-rating>
+                                <hr>
+                                <pre>Nivel: <b>{{currentRate[27]}}</b></pre>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Subtotal</h5>
+                              <p><ngb-progressbar [type]="color[4]" [value]="subtotal[4]" [striped]="true" [animated]="true"><i>{{subtotal[4]}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{subpuntuacion[4]}}</h5>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Total</h5>
+                              <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{puntuacion}}</h5>
+                            </div>
+                          </div>
+                    </ng-template>
+                  </ngb-tab>
+         </ngb-tabset>
+       </div>
+   </div>
+ </app-card>
+
+  <!-- Articulo 11 -->
+  <app-card [title]="'Articulo 11.  Responsabilidades del oficial de seguridad cibernetica y de la información'" [cardToggle]="'collapsed'" >
+   
+      <div class="row">
+         <div class="col-sm-12 col-xl-12 text-center">   
+         <h4 class="sub-title">Preguntas</h4>   
+        
+           <ngb-tabset>
+             <ngb-tab title="1">
+               <ng-template ngbTabContent>
+                 <div class="form-control text-center">
+                    Existen procedimientos de como se debe desarrollar un programa de seguridad cibernetica y de la informacion
+                 </div>
+               <div class="row">
+                 <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[28]">
+                   <br>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="true"> SI
+                   </label>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="false"> NO
+                   </label>
+                 </div>
+                 <div class="col-sm-4 col-xl-4">
+                     <ngb-rating  [(rate)]="currentRate[28]" [readonly]="!validacion[28]" max="5"  >
+                         <ng-template let-fill="fill" >
+                             <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                           </ng-template>
+                     </ngb-rating>
+                     <hr>
+                     <pre>Nivel: <b>{{currentRate[28]}}</b></pre>
+                 </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Subtotal</h5>
+                   <p><ngb-progressbar [type]="color[5]" [value]="subtotal[5]" [striped]="true" [animated]="true"><i>{{subtotal[5]}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{subpuntuacion[5]}}</h5>
+                  </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Total</h5>
+                   <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{puntuacion}}</h5>
+                 </div>
+               </div>
+               </ng-template>
+             </ngb-tab>
+            
+             
+                 <ngb-tab title="2">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        Existen procedimientos para implentar, controlar y dar manteniminto a estos programas de seguridad cibernetica y de la información
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[29]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[29]" [readonly]="!validacion[29]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[29]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[5]" [value]="subtotal[5]" [striped]="true" [animated]="true"><i>{{subtotal[5]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[5]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+             
+             <ngb-tab title="3">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        Existen reglamentos que permitan implementar politicas, estandares y procedimientos para apoyar el programa de seguridad cibernetica y de la informacion 
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[30]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[30]" [readonly]="!validacion[30]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[30]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[5]" [value]="subtotal[5]" [striped]="true" [animated]="true"><i>{{subtotal[5]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[5]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+               <ngb-tab title="4">
+                   <ng-template ngbTabContent>
+                       <div class="form-control text-center">
+                          ¿Existen politicas que establezcan el procedimiento para el tratamiento de riesgos?
+                         </div>
+                        <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[31]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[31]" [readonly]="!validacion[31]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[31]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[5]" [value]="subtotal[5]" [striped]="true" [animated]="true"><i>{{subtotal[5]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[5]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                   </ng-template>
+                 </ngb-tab>
+  
+                 <ngb-tab title="5">
+                    <ng-template ngbTabContent>
+                        <div class="form-control text-center">
+                            ¿existen politicas que indiquen los  niveles aceptados que permitan la gestion de riesgo?
+                          </div>
+                         <div class="row">
+                            <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[32]">
+                              <br>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="true"> SI
+                              </label>
+                              <label ngbButtonLabel class="btn-success  btn-sm">
+                                <input ngbButton type="radio" [value]="false"> NO
+                              </label>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <ngb-rating  [(rate)]="currentRate[32]" [readonly]="!validacion[32]" max="5"  >
+                                    <ng-template let-fill="fill" >
+                                        <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                      </ng-template>
+                                </ngb-rating>
+                                <hr>
+                                <pre>Nivel: <b>{{currentRate[32]}}</b></pre>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Subtotal</h5>
+                              <p><ngb-progressbar [type]="color[5]" [value]="subtotal[5]" [striped]="true" [animated]="true"><i>{{subtotal[5]}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{subpuntuacion[5]}}</h5>
+                            </div>
+                            <div class="col-sm-2 col-xl-2">
+                              <br>
+                              <h5>Total</h5>
+                              <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                              <h5>Puntuación: {{puntuacion}}</h5>
+                            </div>
+                          </div>
+                    </ng-template>
+                  </ngb-tab>
+           </ngb-tabset>
+         </div>
+     </div>
+   </app-card>
+
+   <!-- Articulo 12 -->
+  <app-card [title]="'Articulo 12.  Areas Especializadas'" [cardToggle]="'collapsed'" >
+   
+      <div class="row">
+         <div class="col-sm-12 col-xl-12 text-center">   
+         <h4 class="sub-title">Preguntas</h4>   
+        
+           <ngb-tabset>
+             <ngb-tab title="1">
+               <ng-template ngbTabContent>
+                 <div class="form-control text-center">
+                    ¿Existen protocolos  para el personal tecnico encargada de estas areas especializadas?
+                 </div>
+               <div class="row">
+                 <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[33]">
+                   <br>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="true"> SI
+                   </label>
+                   <label ngbButtonLabel class="btn-success  btn-sm">
+                     <input ngbButton type="radio" [value]="false"> NO
+                   </label>
+                 </div>
+                 <div class="col-sm-4 col-xl-4">
+                     <ngb-rating  [(rate)]="currentRate[33]" [readonly]="!validacion[33]" max="5"  >
+                         <ng-template let-fill="fill" >
+                             <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                           </ng-template>
+                     </ngb-rating>
+                     <hr>
+                     <pre>Nivel: <b>{{currentRate[33]}}</b></pre>
+                 </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Subtotal</h5>
+                   <p><ngb-progressbar [type]="color[6]" [value]="subtotal[6]" [striped]="true" [animated]="true"><i>{{subtotal[6]}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{subpuntuacion[6]}}</h5>
+                  </div>
+                 <div class="col-sm-2 col-xl-2">
+                   <br>
+                   <h5>Total</h5>
+                   <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                   <h5>Puntuación: {{puntuacion}}</h5>
+                 </div>
+               </div>
+               </ng-template>
+             </ngb-tab>
+            
+             
+                 <ngb-tab title="2">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        Existe controles especializados para la gestion de recursos necesarios para garantizar la adecuada gestion del programa de seguridad cibernetica.
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[34]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[34]" [readonly]="!validacion[34]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[34]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[6]" [value]="subtotal[6]" [striped]="true" [animated]="true"><i>{{subtotal[6]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[6]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+             
+             <ngb-tab title="3">
+                 <ng-template ngbTabContent>
+                     <div class="form-control text-center">
+                        Existe una politica que establezca que cada area especializada en el programa de seguridad cibernetica sea dirigida por un profesional nombrado por el Oficial de seguridad cibernetica
+                       </div>
+                       <div class="row">
+                           <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[35]">
+                             <br>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="true"> SI
+                             </label>
+                             <label ngbButtonLabel class="btn-success  btn-sm">
+                               <input ngbButton type="radio" [value]="false"> NO
+                             </label>
+                           </div>
+                           <div class="col-sm-4 col-xl-4">
+                               <ngb-rating  [(rate)]="currentRate[35]" [readonly]="!validacion[35]" max="5"  >
+                                   <ng-template let-fill="fill" >
+                                       <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
+                                     </ng-template>
+                               </ngb-rating>
+                               <hr>
+                               <pre>Nivel: <b>{{currentRate[35]}}</b></pre>
+                           </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Subtotal</h5>
+                             <p><ngb-progressbar [type]="color[6]" [value]="subtotal[6]" [striped]="true" [animated]="true"><i>{{subtotal[6]}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{subpuntuacion[6]}}</h5>
+                            </div>
+                           <div class="col-sm-2 col-xl-2">
+                             <br>
+                             <h5>Total</h5>
+                             <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
+                             <h5>Puntuación: {{puntuacion}}</h5>
+                           </div>
+                         </div>
+                 </ng-template>
+               </ngb-tab>
+   
+        
+           </ngb-tabset>
+         </div>
+     </div>
+   </app-card>

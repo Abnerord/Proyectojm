@@ -14,6 +14,9 @@ import { BreadcrumbsComponent } from './layouts/admin/breadcrumbs/breadcrumbs.co
 import { TitleComponent } from './layouts/admin/title/title.component';
 import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {BarRatingModule} from 'ngx-bar-rating';
+
+
 
 
 
@@ -35,6 +38,7 @@ import {LocationStrategy, PathLocationStrategy} from '@angular/common';
     FormsModule,
     HttpModule,
     ScrollModule,
+    BarRatingModule
   ],
   exports: [ScrollModule],
   providers: [ 

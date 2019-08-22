@@ -1,14 +1,91 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-capitulouno',
   templateUrl: './capitulouno.component.html',
-  styles: []
+  styles: [ `
+  .star {
+    font-size: 2.0rem;
+    color: #b0c4de;
+    select: none; -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+
+  .filled {
+    color: #F5D11E;
+  }
+`],
+providers: [  NgbTabsetConfig    ]
 })
+
 export class CapitulounoComponent implements OnInit {
+  fecha;
+  currentRate = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  total= 0;
+  colortotal ="danger";
+  subtotal =[0,0,0];
+  subpuntuacion = [0,0,0]
+  puntuacion = 0;
+  validacion =[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+  color = ["danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger"];
 
-  constructor() { }
+  constructor(config: NgbTabsetConfig) { 
+    config.justify = 'center';
+    config.type = 'pills';
+  }
 
+  totales(){
+    var final,inicio,mul;
+    this.total = 0;
+    this.puntuacion = 0;
+
+    for(var z=0; z < 3; z++){
+        this.subtotal[z]=0;
+        this.subpuntuacion[z]=0;
+
+        if(z==0){
+           inicio = 0;
+           final = 5;
+           mul = 3.5
+          }
+        if(z==1){
+            inicio = 6;
+            final = 9;
+            mul = 5;
+           }
+        if(z==2){
+            inicio = 10;
+            final = 14;
+            mul = 4;
+           }
+          for(var y = inicio; y <= final; y++){
+            this.subtotal[z] = this.subtotal[z] + (this.currentRate[y] * mul);
+            this.subpuntuacion[z] = this.subpuntuacion[z] + this.currentRate[y];
+            this.total = this.total + (this.currentRate[y] * 1.35);
+            this.puntuacion = this.puntuacion + this.currentRate[y];
+            }
+          if (this.subtotal[z] > 30 && this.subtotal[z] < 70){
+          this.color[z] = "warning";
+          }else if (this.subtotal[z] >= 70){
+          this.color[z] = "success";
+              if(this.subtotal[z]> 100){ this.subtotal[z]= 100}
+          }else{
+          this.color[z] = "danger";
+          }
+          
+          if (this.total > 30 && this.total < 70){
+            this.colortotal = "warning";
+            }else if (this.total >= 70){
+            this.colortotal = "success";
+                if(this.total> 100){ this.total = 100}
+            }else{
+            this.colortotal = "danger";
+            }
+    }  
+      
+    }
   ngOnInit() {
   }
 
