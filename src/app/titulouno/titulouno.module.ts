@@ -10,7 +10,7 @@ import { CapitulodosComponent } from './capitulodos/capitulodos.component';
 import { CapitulotresComponent } from './capitulotres/capitulotres.component';
 
 
-import { BarRatingModule } from "ng2-bar-rating";
+import { BarRatingModule } from "../../../node_modules/ngx-bar-rating";
 
 
 

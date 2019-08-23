@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-7">
       <h5> Objeto, Alcance, Ambito de Aplicación y Principios Rectores</h5>
     </div>
     <div class="col-sm-2 col-xl-2">
@@ -13,14 +13,13 @@
             <input class="form-control" placeholder="yyyy-mm-dd"
                    name="dp" [(ngModel)]="fecha" ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-append">
-              <button class="btn btn-success" (click)="d.toggle()" type="button">FECHA DE ESTUDIO</button>
+              <button class="btn btn-success btn-sm" (click)="d.toggle()" type="button">FECHA</button>
             </div>
           </div>
         </div>
       </form>
     </div>
   </div>
-  
   
   <br> 
   <!-- Articulo 6 -->
@@ -37,7 +36,7 @@
                   ¿Cuenta con un marco de referencia de control y de mejores prácticas para ayudar a monitorear y mejorar las actividades críticas de las TI?
                 </div>
               <div class="row">
-                <div class="btn-group btn-group-toggle   col-sm-3 col-xl-2 offset-sm-1 " ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[0]">
+                <div class="btn-group btn-group-toggle   col-sm-2 col-xl-2" ngbRadioGroup name="radioBasic" [(ngModel)]="validacion[0]">
                   <br>
                   <label ngbButtonLabel class="btn-success  btn-sm">
                     <input ngbButton type="radio" [value]="true"> SI
@@ -46,22 +45,43 @@
                     <input ngbButton type="radio" [value]="false"> NO
                   </label>                  
                 </div>                
-                <div class="col-sm-4 col-xl-4">
-                    <ngb-rating  [(rate)]="currentRate[0]" [readonly]="!validacion[0]" max="5"  >
-                        <ng-template let-fill="fill" >
-                            <span class="star" [class.filled]="fill === 100" (click)="totales()">&#9733;</span>
-                          </ng-template>
-                    </ngb-rating>
-                    <hr>
-                    <pre>Nivel: <b>{{currentRate[0]}}</b></pre>
+                <div id="niveles" class="col-sm-3 col-xl-3">
+                    <br>
+                    <bar-rating (rateChange)="totales()" (hover)="totales()"  [(rate)]="currentRate[0]" [max]="5" [readOnly]="!validacion[0]" [theme]="'movie'" [showText]="true"
+                    [titles]="['1.Inicial', '2.Administrado' , '3.Definido', '4.Administrado','5.Optimizado']" ></bar-rating>
                 </div>
+                <div class="col-sm-2 col-xl-2 "> 
+                     <div id="progress">
+                        <ngb-progressbar  [type]="colorpregunta[0]" [value]="currentRate[0]*20" [striped]="true" [animated]="true"> <i>{{currentRate[0]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[1]" [value]="currentRate[1]*20" [striped]="true" [animated]="true"> <i>{{currentRate[1]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[2]" [value]="currentRate[2]*20" [striped]="true" [animated]="true"> <i>{{currentRate[2]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[3]" [value]="currentRate[3]*20" [striped]="true" [animated]="true"> <i>{{currentRate[3]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[0]" [value]="currentRate[4]*20" [striped]="true" [animated]="true"> <i>{{currentRate[4]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[1]" [value]="currentRate[4]*20" [striped]="true" [animated]="true"> <i>{{currentRate[4]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[2]" [value]="currentRate[4]*20" [striped]="true" [animated]="true"> <i>{{currentRate[4]}}</i> </ngb-progressbar>
+                        <ngb-progressbar  [type]="colorpregunta[3]" [value]="currentRate[4]*20" [striped]="true" [animated]="true"> <i>{{currentRate[4]}}</i> </ngb-progressbar>
+                        
+                     </div>
+                     <div>
+                        <h6>Nivel por pregunta</h6>
+                     </div>   
+              </div>
                 <div class="col-sm-2 col-xl-2">
                   <br>
-                  <h5>Subtotal</h5>
-                  <p><ngb-progressbar [type]="color[0]" [value]="subtotal[0]" [striped]="true" [animated]="true"><i>{{subtotal[0]}}%</i></ngb-progressbar></p>
-                  <h5>Puntuación: {{subpuntuacion[0]}}</h5>
+                  <h6>Seguridad</h6>
+                  <p><ngb-progressbar [type]="color[0]" [value]="subtotal[0]" [striped]="true" [animated]="true"></ngb-progressbar></p>
+                  <h5>{{subtotal[0]}}%</h5>
                 </div>
+                <div class="col-sm-3 col-xl-3">
+                  <ngb-alert type="success" [dismissible]="false">
+                    <h5><u>Nivel de Madurez</u></h5>
+                    <h3>1</h3>
+                  </ngb-alert>
+                      
+                </div>
+
               </div>
+              
               </ng-template>
             </ngb-tab>
            

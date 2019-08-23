@@ -16,6 +16,26 @@ import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
   .filled {
     color: #F5D11E;
   }
+#niveles{
+  margin-left: -50px;
+}
+  
+#progress {
+ 
+  margin-bottom: -50px;
+  margin-right: -10px;
+
+  padding-right: 30px;
+  padding-left: 70px;
+
+  transform: rotate(270deg);
+  -webkit-transform: rotate(270deg); /*Webkit*/
+
+  -moz-transform: rotate(270deg); /*FireFox*/
+
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /*IE*/
+}
+
 `],
 providers: [  NgbTabsetConfig    ]
 })
@@ -28,7 +48,8 @@ export class CapitulotresComponent implements OnInit {
   subpuntuacion = [0,0,0,0,0,0,0]
   puntuacion = 0;
   validacion =[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
-  color = ["danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger"];
+  color = ["danger","danger","danger","danger","danger","danger","danger"];
+  colorpregunta = ["danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger","danger"];
 
   constructor(config: NgbTabsetConfig) {// customize default values of tabsets used by this component tree
     config.justify = 'center';
@@ -83,8 +104,22 @@ export class CapitulotresComponent implements OnInit {
               this.subpuntuacion[z] = this.subpuntuacion[z] + this.currentRate[y];
               this.total = this.total + (this.currentRate[y] * 0.6)
               this.puntuacion = this.puntuacion + this.currentRate[y];
-              }
-            if (this.subtotal[z] > 30 && this.subtotal[z] < 70){
+              
+              if (this.currentRate[y] == 5){
+                this.colorpregunta[y] = "primary";
+                }else if (this.currentRate[y] == 4){
+                this.colorpregunta[y] = "success";
+                }else if (this.currentRate[y] == 3){
+                  this.colorpregunta[y] = "warning";
+                  }else if (this.currentRate[y] == 2){
+                    this.colorpregunta[y] = "warning";
+                    }else if (this.currentRate[y] == 1){
+                      this.colorpregunta[y] = "danger";
+                      }
+
+            }
+            
+              if (this.subtotal[z] > 30 && this.subtotal[z] < 70){
             this.color[z] = "warning";
             }else if (this.subtotal[z] >= 70){
             this.color[z] = "success";

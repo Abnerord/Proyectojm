@@ -26,6 +26,8 @@ File: style.css
 /**  =====================
       Custom css start
 ==========================  **/
+@import '~../node_modules/ngx-bar-rating/themes/br-movie-theme.css';
+
 body {
   background-color: #f3f3f3;
   font-size: 0.875em;
