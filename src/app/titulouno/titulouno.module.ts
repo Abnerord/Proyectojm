@@ -19,7 +19,7 @@ import { BarRatingModule } from "../../../node_modules/ngx-bar-rating";
     CommonModule,
     RouterModule.forChild(Titulounoroutes),
     SharedModule,
-    BarRatingModule 
+    BarRatingModule,
 
   ],
   declarations: [                          

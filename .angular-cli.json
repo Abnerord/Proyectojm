@@ -26,8 +26,7 @@
         "../node_modules/ng2-toasty/style-default.css",
         "../node_modules/ng2-toasty/style-material.css",
         "styles.css",
-        "assets/css/custom.css",
-        "../node_modules/ng2-bar-rating/themes/br-defaul-theme.css"
+        "assets/css/custom.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",

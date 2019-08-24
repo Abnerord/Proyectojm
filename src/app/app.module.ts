@@ -38,7 +38,7 @@ import {BarRatingModule} from 'ngx-bar-rating';
     FormsModule,
     HttpModule,
     ScrollModule,
-    BarRatingModule
+    BarRatingModule,
   ],
   exports: [ScrollModule],
   providers: [ 
