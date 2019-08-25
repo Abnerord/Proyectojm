@@ -1,8 +1,12 @@
 
 <div class="row">
-    <div class="col-sm-7">
+    <div class="col-sm-12">
       <h5> Objeto, Alcance, Ambito de Aplicación y Principios Rectores</h5>
-    </div>
+      
+      </div>      
+</div>
+<br>
+<div class="row">
     <div class="col-sm-2 col-xl-2">
       <h5>Total</h5>
       <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
@@ -24,8 +28,7 @@
   
   <br> 
   <!-- Articulos -->
-   <app-card *ngFor="let articulo of articulos; let a = index;" [title]=articulo.articulo [cardToggle]="'collapsed'" >
-   
+   <app-card *ngFor="let articulo of articulos; let a = index;" [title]="articulo.articulo" [cardToggle]="'collapsed'" [headerContent]="articulo.vermas" (dblclick)=vermas(a)>
      <div class="row">
         <div class="col-sm-12 col-xl-12 text-center">   
         <h4 class="sub-title">Preguntas</h4>   
@@ -50,7 +53,7 @@
                 <div  class="col-sm-3 col-xl-3">
                     <br>
                     <bar-rating id="uno" (rateChange)="totales()" (hover)="totales()"  [(rate)]="tab.currentRate" [max]="5" [readOnly]="!tab.validacion" [theme]="'movie'" [showText]="true"
-                    [titles]="['1.Inicial', '2.Administrado' , '3.Definido', '4.Administrado','5.Optimizado']" ></bar-rating>
+                    [titles]="['1.Inicial', '2.Gestionado' , '3.Definido', '4.Administrado','5.Optimizado']" ></bar-rating>
                 </div>
                 <div class="col-sm-2 col-xl-2 "> 
                     <br>
@@ -72,20 +75,15 @@
                   <h5>{{articulos[a].subtotal}}%</h5>
                 </div>
                 <div class="col-sm-2 col-xl-2">
-                  <br>
-                  <div class="bg-primary text-white">
-                      <u>Nivel de Madurez</u>
-                      {{articulos[a].madurez}}
-                  </div>
-                 
+                  <ngb-alert [type]="articulos[a].colorm" [dismissible]="false"> <h5><u>Nivel de Madurez</u></h5> <h1>{{articulos[a].madurez}}</h1> </ngb-alert>
                 </div>
 
               </div>
               <br>
-              <div class="form-group row" *ngIf="tab.currentRate ===1 || tab.currentRate ===2 || tab.currentRate ===3">
+              <div class="form-group row" *ngIf="articulo.recomendaciones">
                 <label class="col-sm-2 col-form-label"> <h5> Recomendaciones </h5></label>
                 <div class="col-sm-10">
-                  <textarea rows="5" cols="5" class="form-control" placeholder="Recomendaciones"></textarea>
+                  <textarea rows="4" cols="1" class="form-control" [placeholder]="articulo.recomendaciones" readonly></textarea>
                 </div>
               </div>
               </ng-template>
