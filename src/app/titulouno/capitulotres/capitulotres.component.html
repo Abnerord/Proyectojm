@@ -7,6 +7,56 @@
 </div>
 <br>
 <div class="row">
+
+  <div class="col-sm-6 col-xl-7">
+      <ng-template #popTContenido  let-img= "img"><img [src]="img" class="rounded" alt="Cinque Terre"></ng-template>
+    <ng-template #popContent let-language="language" > {{language}}</ng-template>
+ 
+<button
+  type="button" class="btn btn-sm btn-danger mr-2" placement="bottom"
+  [ngbPopover]="popContent"
+  triggers="manual" #p1="ngbPopover" (mouseover)="toggleWithGreeting(p1, 'Inicial', 'El proceso es impredecible, es reactivo y pobremente controlado')" (mouseout)="toggleWithGreeting(p1, 'Inicial', 'El proceso es impredecible, es reactivo y probremente controlado')"
+>
+  Inicial
+</button>
+<button
+  type="button" class="btn btn-sm btn-warning mr-2" placement="bottom"
+  [ngbPopover]="popContent" 
+  triggers="manual" #p2="ngbPopover" (mouseover)="toggleWithGreeting(p2, 'Gestionado', 'En este nivel, el proceso es reactivo y se caracteriza por su aplicación a proyectos' )" (mouseout)="toggleWithGreeting(p2, 'Gestionado', 'En este nivel, el proceso es reactivo y se caracteriza por su aplicación a proyectos')"
+>
+  Gestionado
+</button>
+<button
+  type="button" class="btn btn-sm btn-warning mr-2" placement="bottom"
+  [ngbPopover]="popContent" 
+  triggers="manual" #p3="ngbPopover" (mouseover)="toggleWithGreeting(p3, 'Definido', 'En este nivel, el proceso se vuelve proactivo y se ve a nivel de organización' )" (mouseout)="toggleWithGreeting(p3, 'Definido', 'En este nivel, el proceso se vuelve proactivo y se ve a nivel de organización' )"
+>
+  Definido
+</button>
+<button
+  type="button" class="btn btn-sm btn-success  mr-2" placement="bottom"
+  [ngbPopover]="popContent" 
+  triggers="manual" #p4="ngbPopover" (mouseover)="toggleWithGreeting(p4, 'Administrado', 'Este proceso es medido y controlado' )" (mouseout)="toggleWithGreeting(p4, 'Administrado', 'Este proceso es medido y controlado')"
+>
+  Administrado
+</button>
+<button
+  type="button" class="btn btn-sm btn-primary mr-2" placement="bottom"
+  [ngbPopover]="popContent"
+  triggers="manual" #p5="ngbPopover" (mouseover)="toggleWithGreeting(p5, 'Optimizado', 'El proceso se enfoca a una mejora continua' )" (mouseout)="toggleWithGreeting(p5, 'Optimizado', 'El proceso se enfoca a una mejora continua')"
+>
+  Optimizado
+</button>
+<button
+  type="button" class="btn btn-sm btn-primary mr-2" placement="bottom"
+  [ngbPopover]="popTContenido"
+  triggers="manual" #p6="ngbPopover" (mouseover)="toggleWithGreetingdos(p6,'../../../assets/images/matriz.png' )" (mouseout)="toggleWithGreetingdos(p6,'../../../assets/images/matriz.png')"
+>
+  Matriz Risg.
+</button>
+
+
+  </div>
     <div class="col-sm-2 col-xl-2">
       <h5>Total</h5>
       <p><ngb-progressbar [type]="colortotal" [value]="total" [striped]="true" [animated]="true"><i>{{total}}%</i></ngb-progressbar></p>
