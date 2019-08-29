@@ -8,12 +8,14 @@ import { Titulocuatroroutes } from './titulocuatro.routing';
 import { CapitulounoComponent } from './capitulouno/capitulouno.component';
 import { CapitulodosComponent } from './capitulodos/capitulodos.component';
 
+import { BarRatingModule } from "../../../node_modules/ngx-bar-rating";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(Titulocuatroroutes),
-    SharedModule
+    SharedModule,
+    BarRatingModule
   ],
   declarations: [
     TitulocuatroComponent,

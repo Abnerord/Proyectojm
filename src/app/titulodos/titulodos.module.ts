@@ -11,11 +11,14 @@ import { CapitulotresComponent } from './capitulotres/capitulotres.component';
 import { CapitulocuatroComponent } from './capitulocuatro/capitulocuatro.component';
 import { CapitulocincoComponent } from './capitulocinco/capitulocinco.component';
 
+import { BarRatingModule } from "../../../node_modules/ngx-bar-rating";
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(Titulodosroutes),
-    SharedModule
+    SharedModule,
+    BarRatingModule
   ],
   declarations: [
     TitulodosComponent,
