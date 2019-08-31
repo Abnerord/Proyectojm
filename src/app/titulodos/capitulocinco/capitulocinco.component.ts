@@ -49,14 +49,14 @@ export class CapitulocincoComponent implements OnInit {
 //progres calcula el porcentaje de la barra de progreso.
 //currenRate guarda el nivel de madurez de la pregunta.
 //recomendaciones, guarda las tres recomendaciones de cada pregunta. 
- preguntas = [[{pregunta :"¿se efectua la autoevluación a traves de herramientas digitales para la remision de la informacion requerida.?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.1","hola2.1","hola3.1"]},
+ preguntas = [[{pregunta :"¿se efectua la autoevluación a traves de herramientas digitales para la remision de la informacion requerida.?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a las entidades reguladores para el acceso a las herramientas solicitadas", "crear un plan que regularice el uso de las herramientas y asignar responsabilidades", "capacitación constante ante nuevas herramientas digitales"]},
                     ],[
-                {pregunta:"¿la disponibilidad de informacion hacia terceros es prioridad?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                      {pregunta:" ¿la información sobre la Gestióin de seguridad  Cibernética esta disponible para terceros?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
+                {pregunta:"¿la disponibilidad de informacion hacia terceros es prioridad?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Diseño de un sistema de alta disponibilidad mediante estándarescomo thiers. ", "aplicación del diseño estandarizado, y asegurar la data.", "mejora de controles, como asegurar la información, back-up, sitios redundantes, mínimo dos enlaces, etc."]},
+                      {pregunta:" ¿la información sobre la Gestióin de seguridad  Cibernética esta disponible para terceros?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear un entidad o comité ejecutivo encargado de la capacitación y concientización de uso de las tecnologías de manera adecuada.", "capacitación de usuarios, sobre el manejo de la información de manera adecuada. ", "implementación de mejora continua y buenas prácticas."]},
 
               ],[
-                {pregunta:"¿la superintedencia  de sistemas financieros y otros organos verifican del cumpliento de forma adecuad?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                      {pregunta:" ¿la evaluacion de cumplimiento es a menudo aplicada ?",indice:5,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
+                {pregunta:"¿la superintedencia  de sistemas financieros y otros organos verifican del cumpliento de forma adecuad?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a la entidad reguladora del país.", "adaptar las metodologías de buenas prácticas que propone los sistemas reguladores.", "mejora continua"]},
+                      {pregunta:" ¿la evaluacion de cumplimiento es a menudo aplicada ?",indice:5,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear un estrategia de monitoreo y control periódicamente y salvaguardar la información.", "evaluación constantes para verificar el cumplimiento.", "mejora continua."]}
                 
               ] ]
   
