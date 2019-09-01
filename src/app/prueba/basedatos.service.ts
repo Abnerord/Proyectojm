@@ -12,4 +12,6 @@ export class BasedatosService {
     return this.http.get("http://localhost/bd/server/getEvents.php").pipe(map((res: Response)=> res.json()));
   }
 
+  
+
 }

@@ -5,7 +5,7 @@
       <div class="col-sm-12">
         <!-- Authentication card start -->
         <div class="login-card card-body auth-body">
-          <form class="md-float-material">
+          <form class="md-float-material" #f="ngForm">
            <!-- <div class="text-center">
               <img src="assets/images/auth/logo.png" alt="logo.png">
             </div>-->
@@ -17,11 +17,11 @@
               </div>
               <p class="text-inverse b-b-default text-center p-b-5">Bienvenido. Ingrese el Usuario, Password y la Empresa</p>
               <div class="input-group">
-                <input type="email" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Username" ngModel name="nombre" required>
                 <span class="md-line"></span>
               </div>
               <div class="input-group">
-                <input type="password" class="form-control" placeholder="password">
+                <input type="password" class="form-control" placeholder="password"  ngModel name="password" required>
                 <span class="md-line"></span>
               </div>
               <div class="row m-t-25 text-left">
@@ -47,7 +47,7 @@
               </div>
               <div class="row m-t-30">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)=" log(f)">LOGIN</button>
                 </div>
               </div>
             </div>
