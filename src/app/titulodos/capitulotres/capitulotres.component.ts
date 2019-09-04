@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
-
+import {Router} from '@angular/router';
+import {VariablesglobalesService} from '../../variablesglobales.service';
 
 @Component({
   selector: 'app-capitulotres',
@@ -37,9 +38,9 @@ puntuacion = 0;
 //colorm, guarda el color correspondiente al nivel de madurez (por default es rojo danger o el nivel mas bajo),
 //ver mas, es la variable que se utiliza para reducir la descripcion.
 //recomendacion, guarda las recomendaciones generales de todo el articulo (por default esta vacia) 
-articulos = [{articulo:"Articulo 41. Auditorías Internas",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" las entidades de intermediación financiera, administradores y participantes del SIPARD, entidades públicas de intermediación financiera y las entidades de apoyo y servicios conexos, deben establecer acciones para el desarrollo, implementación y mantenimiento del programa de seguridad cibernética y de la información.",vermas:"Ver mas..",recomendaciones:""},
-            {articulo:"Articulo 42. Desempeño de la Seguridad",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"las entidades de intermediación financiera, administradores y participantes, deben contar con una estructura gerencial y funciones de control de seguridad cibernética y de la información, acordes a su naturaleza, tamaño, complejidad, perfil de riesgo e importancia sistémica.",vermas:"Ver mas..",recomendaciones:""},
-            {articulo:"Articulo 43. Cumplimiento del monitoreo de la Seguridad",subtotal:0,subpuntuacion:0,color:"danger 3",madurez:0,colorm:"danger",descripcion:" las políticas del programa deben ser sometida al consejo u órgano societario competente, para su aprobación por parte del comité funcional de seguridad cibernética a mas tardar entre el tercer y sexto mes de entrar en vigencia.",vermas:"Ver mas..",recomendaciones:""}];
+articulos = [{articulo:"Articulo 41. Auditorías Internas",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" Se deben establecer procesos de auditorias internas para garantizar la supervisión efectiva, se contempla lo siguiente:a.	Gestión de las auditorias internas de seguridad cibernética y de la información b.	Informes de resultados de las auditorias internas de seguridad cibernética y de la información",vermas:"Ver mas..",recomendaciones:"",numero:41},
+            {articulo:"Articulo 42. Desempeño de la Seguridad",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"Se deben establecer un mecanismo que procuren asegurar un desempeño óptimo de la gestión de seguridad cibernética: a.	Monitoreo de la seguridad b.	Informes sobre la seguridad",vermas:"Ver mas..",recomendaciones:"",numero:42},
+            {articulo:"Articulo 43. Cumplimiento del monitoreo de la Seguridad",subtotal:0,subpuntuacion:0,color:"danger 3",madurez:0,colorm:"danger",descripcion:" Se deben establecer un procedimiento de gestión de cumplimiento de la seguridad cibernética y de la información derivados de los lineamientos reglamentarios, jurídicos y de obligaciones contractuales.",vermas:"Ver mas..",recomendaciones:"",numero:43}];
 
 //preguntas es el array que guarda las preguntas de cada articulo
 //es importante resaltar que los segmentos de preguntas deben ir en el orden en el que se ingresaron los articulos en la variable articulos.
@@ -50,28 +51,28 @@ articulos = [{articulo:"Articulo 41. Auditorías Internas",subtotal:0,subpuntuac
 //progres calcula el porcentaje de la barra de progreso.
 //currenRate guarda el nivel de madurez de la pregunta.
 //recomendaciones, guarda las tres recomendaciones de cada pregunta. 
-preguntas = [[{pregunta :"¿Se realizan auditorías Periódicas?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.1","hola2.1","hola3.1"]},
-              {pregunta:"¿Se realiza auditorías Externas?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.2","hola2.2","hola3.2"]},
-              {pregunta:"¿Se analiza que los auditores cuenten con certificaciones de la misma?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-              {pregunta:"¿La auditoría es exhaustiva y Objetiva?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-              {pregunta:"¿Se documentan y notifican a las partes interesadas sobre los resultados de la Auditoría?",indice:5,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
+preguntas = [[{pregunta :"¿Se realizan auditorías Periódicas?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Realizar planes de implementación para auditorías", "Definir a cada cuanto tiempo se realizarán esta práctica", "Capacitar a usuarios para toma de buenas prácticas"]},
+              {pregunta:"¿Se realiza auditorías Externas?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Realizar planes periódicos para auditorías Externas", "Definir tiempos en que se realizará esta práctica", "Capacitar a usuarios para toma de buenas prácticas"]},
+              {pregunta:"¿Se analiza que los auditores cuenten con certificaciones de la misma?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Realizar planes de evaluación para determinar los servicios que prestará auditoría", "Analizar a los auditores por medio de evaluaciones", "Mantener relación con la auditoría que haya sido mejor calificada"]},
+              {pregunta:"¿La auditoría es exhaustiva y Objetiva?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer planes de auditoría orientadas a la objetividad del negocio", "Establecer planes de auditoría objetivas y determinar alcances", "Notificar a alta Gerencia los resultados "]},
+              {pregunta:"¿Se documentan y notifican a las partes interesadas sobre los resultados de la Auditoría?",indice:5,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer políticas de estructuración de documentos", "Implementar el modelo de documentos a presentar", "Notificar a colaboradores sobre modelo de documento"]}
                   ],[
-              {pregunta:"¿Existen un CEO que monitoree el nivel de Seguridad Informática?",indice:6,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:" ¿Se realiza de forma periódica un Etical Hacking?",indice:7,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿El CEO realiza informes periódicos sobre el estado de vulnerabilidades encontradas en la infraestructura?",indice:8,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿Se realiza análisis de Seguridad de forma periódica en los sistemas e infraestructura?",indice:9,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿El CEO presenta los estados de resultado sobre las posibles vulnerabilidades en la corporación?",indice:10,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
+              {pregunta:"¿Existen un CEO que monitoree el nivel de Seguridad Informática?",indice:6,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Definir el rol y perfil que debe contar un CEO", "Contratar al CEO conforme al perfil definido", "Establecer con CEO los roles y monitoreo de seguridad informática que necesita la corporación"]},
+                    {pregunta:" ¿Se realiza de forma periódica un Etical Hacking?",indice:7,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer normas de buenas prácticas Búsqueda de corporaciones que ofrezcan el servicio", "Determinar los períodos que realizará ", "Contrato con empresa de servicio"]},
+                    {pregunta:"¿El CEO realiza informes periódicos sobre el estado de vulnerabilidades encontradas en la infraestructura?",indice:8,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer informes con CEO para presentarlos Determinar modelos de informes", "Determinar los períodos que realizará los informes", "Divulgación de informes para establecer medidas de seguridad"]},
+                    {pregunta:"¿Se realiza análisis de Seguridad de forma periódica en los sistemas e infraestructura?",indice:9,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Determinar planes estratégicos de análisis de sistemas bajo normas internacionales", "Aplicar las normas establecidas", "Divulgar información sobre las buenas prácticas de seguridad para ser evaluadas y determinas su madurez"]},
+                    {pregunta:"¿El CEO presenta los estados de resultado sobre las posibles vulnerabilidades en la corporación?",indice:10,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Determinar formatos de estados de resultados bajo normas Internacionales", "Aplicar los formatos determinados ", "Divulgar información de cuáles serán los formatos que se utilizarán"]}
               
             ],[
-              {pregunta:"¿Se cuenta con procesos de seguridad en las restrinjan los accesos?",indice:11,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:" ¿Existen un área de Seguridad que vele el cumplimiento de la seguridad cibernética?",indice:12,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿Existen sanciones cuando no se cumplen con los estándares de seguridad?",indice:13,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿El área de seguridad?",indice:14,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿Se realiza análisis de seguridad periódicas para corroborar si las políticas establecidas deben cambiar o continuar?",indice:15,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
+              {pregunta:"¿Se cuenta con procesos de seguridad en las restrinjan los accesos?",indice:11,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer procesos de seguridad bajo las políticas de seguridad establecidas", "Corroborar que las políticas sean cumplidas", "Realizar actualizaciones de políticas de seguridad anualmente"]},
+                    {pregunta:" ¿Existen un área de Seguridad que vele el cumplimiento de la seguridad cibernética?",indice:12,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer roles que ejercerá el hora de seguridad", "Realizar auditorías para corroborar que el área cumpla con las políticas establecidas", "El área debe realizar actualizaciones de las políticas de seguridad"]},
+                    {pregunta:"¿Existen sanciones cuando no se cumplen con los estándares de seguridad?",indice:13,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer sanciones conforme el grado de la falta", "Realizar planes de concientización ", "Monitorear que los colaboradores cumplan con los estándares"]},
+                    {pregunta:"¿El área de seguridad?",indice:14,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Realizar manuales de seguridad bajo normas Internacionales Determinar procesos definidos para cada control", "Establecer manuales y políticas de seguridad ", "Capacitar a los Usuarios Divulgar las políticas de seguridad a toda la corporación"]},
+                    {pregunta:"¿Se realiza análisis de seguridad periódicas para corroborar si las políticas establecidas deben cambiar o continuar?",indice:15,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer normas de buenas prácticas para determinar cuándo se actualizarán los manuales", "Actualizar los manuales conforme a la necesidad de la empresa", "Actualizar los manuales conforme lo establecido a buenas prácticas, debe estar firmadas y autorizadas por los Gerentes"]}
               
             ] ]
 
-constructor(config: NgbTabsetConfig) {// customize default values of tabsets used by this component tree
+constructor(config: NgbTabsetConfig,private router: Router,public bd: VariablesglobalesService) {// customize default values of tabsets used by this component tree
   config.justify = 'center';
   config.type = 'pills'; }
 
@@ -196,6 +197,34 @@ constructor(config: NgbTabsetConfig) {// customize default values of tabsets use
       
     }
 
+    guardar(){
+
+      let year = this.fecha.year;
+      let month = this.fecha.month;
+      let day = this.fecha.day;
+      let date = year+"-"+month+"-"+day;
+         
+      let idart = 0;
+      
+      for(let key in this.articulos){
+        this.bd.ingresoArticulo(this.articulos[key].articulo,this.articulos[key].descripcion,this.articulos[key].madurez,this.articulos[key].recomendaciones,
+          this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero).subscribe((data: Response)=>{
+           
+            for(let k in data){
+              idart = data[k];
+              }
+                for(let x in this.preguntas[key]){
+                  this.bd.ingresoPregunta(this.preguntas[key][x].pregunta,this.articulos[key].numero,this.preguntas[key][x].currentRate,this.preguntas[key][x].progres,idart).subscribe((data: Response)=>{})
+                }
+                  
+        
+          })
+
+      }
+
+      this.router.navigate(['/Titulodos/Capitulocuatro']);
+
+      }
   ngOnInit() {
   }
 

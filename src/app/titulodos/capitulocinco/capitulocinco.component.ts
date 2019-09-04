@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
+import {VariablesglobalesService} from '../../variablesglobales.service';
 
 @Component({
   selector: 'app-capitulocinco',
@@ -36,10 +38,10 @@ export class CapitulocincoComponent implements OnInit {
   //colorm, guarda el color correspondiente al nivel de madurez (por default es rojo danger o el nivel mas bajo),
   //ver mas, es la variable que se utiliza para reducir la descripcion.
   //recomendacion, guarda las recomendaciones generales de todo el articulo (por default esta vacia) 
- articulos = [{articulo:"Artículo 46. Informe de Cumplimiento",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" las entidades de intermediación financiera, administradores y participantes del SIPARD, entidades públicas de intermediación financiera y las entidades de apoyo y servicios conexos, deben establecer acciones para el desarrollo, implementación y mantenimiento del programa de seguridad cibernética y de la información.",vermas:"Ver mas..",recomendaciones:""},
-              {articulo:"Artículo 47. Requerimientos Adicionales",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"las entidades de intermediación financiera, administradores y participantes, deben contar con una estructura gerencial y funciones de control de seguridad cibernética y de la información, acordes a su naturaleza, tamaño, complejidad, perfil de riesgo e importancia sistémica.",vermas:"Ver mas..",recomendaciones:""},
-              {articulo:"Artículo 48. verificación de entes reguladores y supervisores",subtotal:0,subpuntuacion:0,color:"danger 3",madurez:0,colorm:"danger",descripcion:" las políticas del programa deben ser sometida al consejo u órgano societario competente, para su aprobación por parte del comité funcional de seguridad cibernética a mas tardar entre el tercer y sexto mes de entrar en vigencia.",vermas:"Ver mas..",recomendaciones:""}];
- 
+  articulos = [{articulo:"Artículo 46. Informe de Cumplimiento",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:"Se debe cumplir con un procedimiento de autoevaluación a través de herramientas digitales, para la remisión de la información requerida, en los plazos y en forma en que se determine mediante instructivo.",vermas:"Ver mas..",recomendaciones:"",numero:46},
+  {articulo:"Artículo 47. Requerimientos Adicionales",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"La superintendencia del sistema financiero y los órganos reguladores sub sectoriales que apoyen al a gestión del programa de seguridad cibernética y de la información.",vermas:"Ver mas..",recomendaciones:"",numero:47},
+  {articulo:"Artículo 48. verificación de entes reguladores y supervisores",subtotal:0,subpuntuacion:0,color:"danger 3",madurez:0,colorm:"danger",descripcion:"Se podrá verificar la idoneidad del cumplimiento del programa de seguridad cibernética y de la información de sus entes regulados, así como de la evaluación independiente de la eficacia de dicha gestión.",vermas:"Ver mas..",recomendaciones:"",numero:48}];
+
 //preguntas es el array que guarda las preguntas de cada articulo
 //es importante resaltar que los segmentos de preguntas deben ir en el orden en el que se ingresaron los articulos en la variable articulos.
 //si en la variable articulos en primer lugar esta un articulo, se debe de poner en primer lugar sus preguntas en el array preguntas.
@@ -49,7 +51,7 @@ export class CapitulocincoComponent implements OnInit {
 //progres calcula el porcentaje de la barra de progreso.
 //currenRate guarda el nivel de madurez de la pregunta.
 //recomendaciones, guarda las tres recomendaciones de cada pregunta. 
- preguntas = [[{pregunta :"¿se efectua la autoevluación a traves de herramientas digitales para la remision de la informacion requerida.?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a las entidades reguladores para el acceso a las herramientas solicitadas", "crear un plan que regularice el uso de las herramientas y asignar responsabilidades", "capacitación constante ante nuevas herramientas digitales"]},
+preguntas = [[{pregunta :"¿se efectua la autoevluación a traves de herramientas digitales para la remision de la informacion requerida.?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a las entidades reguladores para el acceso a las herramientas solicitadas", "crear un plan que regularice el uso de las herramientas y asignar responsabilidades", "capacitación constante ante nuevas herramientas digitales"]},
                     ],[
                 {pregunta:"¿la disponibilidad de informacion hacia terceros es prioridad?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Diseño de un sistema de alta disponibilidad mediante estándarescomo thiers. ", "aplicación del diseño estandarizado, y asegurar la data.", "mejora de controles, como asegurar la información, back-up, sitios redundantes, mínimo dos enlaces, etc."]},
                       {pregunta:" ¿la información sobre la Gestióin de seguridad  Cibernética esta disponible para terceros?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear un entidad o comité ejecutivo encargado de la capacitación y concientización de uso de las tecnologías de manera adecuada.", "capacitación de usuarios, sobre el manejo de la información de manera adecuada. ", "implementación de mejora continua y buenas prácticas."]},
@@ -60,7 +62,8 @@ export class CapitulocincoComponent implements OnInit {
                 
               ] ]
   
-  constructor(config: NgbTabsetConfig) {// customize default values of tabsets used by this component tree
+  
+  constructor(config: NgbTabsetConfig,private router: Router,public bd: VariablesglobalesService) {// customize default values of tabsets used by this component tree
     config.justify = 'center';
     config.type = 'pills'; }
 
@@ -184,7 +187,34 @@ export class CapitulocincoComponent implements OnInit {
       }  
         
       }
+      guardar(){
 
+        let year = this.fecha.year;
+        let month = this.fecha.month;
+        let day = this.fecha.day;
+        let date = year+"-"+month+"-"+day;
+           
+        let idart = 0;
+        
+        for(let key in this.articulos){
+          this.bd.ingresoArticulo(this.articulos[key].articulo,this.articulos[key].descripcion,this.articulos[key].madurez,this.articulos[key].recomendaciones,
+            this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero).subscribe((data: Response)=>{
+             
+              for(let k in data){
+                idart = data[k];
+                }
+                  for(let x in this.preguntas[key]){
+                    this.bd.ingresoPregunta(this.preguntas[key][x].pregunta,this.articulos[key].numero,this.preguntas[key][x].currentRate,this.preguntas[key][x].progres,idart).subscribe((data: Response)=>{})
+                  }
+                    
+          
+            })
+  
+        }
+  
+        this.router.navigate(['/Titulotres/Capitulouno']);
+  
+        }
   ngOnInit() {
   }
 

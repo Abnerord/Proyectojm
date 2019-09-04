@@ -16,6 +16,8 @@ import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {BarRatingModule} from 'ngx-bar-rating';
 
+import {VariablesglobalesService} from './variablesglobales.service'
+
 
 
 
@@ -42,7 +44,8 @@ import {BarRatingModule} from 'ngx-bar-rating';
   ],
   exports: [ScrollModule],
   providers: [ 
-      { provide: LocationStrategy, useClass: PathLocationStrategy }
+      { provide: LocationStrategy, useClass: PathLocationStrategy },
+      VariablesglobalesService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,8 @@ import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/a
 
 import { MenuItems } from '../../shared/menu-items/menu-items';
 
+import{VariablesglobalesService} from '../../variablesglobales.service';
+
 export interface Options {
   heading?: string;
   removeFooter?: boolean;
@@ -36,6 +38,8 @@ export interface Options {
 })
 
 export class AdminLayoutComponent implements OnInit {
+  nombre="";
+  empresa="";
   deviceType = 'desktop';
   verticalNavType = 'expanded';
   verticalEffect = 'shrink';
@@ -47,7 +51,7 @@ export class AdminLayoutComponent implements OnInit {
 
   public htmlButton: string;
 
-  constructor(public menuItems: MenuItems) {
+  constructor(public menuItems: MenuItems,public user: VariablesglobalesService) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
@@ -60,7 +64,10 @@ export class AdminLayoutComponent implements OnInit {
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+   this.nombre = this.user.usuariologin.nombre;
+   this.empresa = this.user.usuariologin.empresa;
+  }
 
   onClickedOutside(e: Event) {
       if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {

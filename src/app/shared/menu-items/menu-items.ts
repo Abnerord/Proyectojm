@@ -31,7 +31,7 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    label: 'Menú principal',
+    label: 'Evaluación',
     main: [ 
       {
         state: 'Titulouno',
@@ -123,7 +123,7 @@ const MENUITEMS = [
         name: 'Dashboard',
         type: 'link',
         icon: 'ti-home'
-      },
+      }/*,
       {
         state: 'prueba',
         name: 'Prueba',
@@ -155,9 +155,9 @@ const MENUITEMS = [
         name: 'Notifications',
         type: 'link',
         icon: 'ti-crown'
-      },
+      },*/
     ]
-  },
+  }/*,
   {
     label: 'FORMS & TABLES',
     main: [
@@ -277,7 +277,7 @@ const MENUITEMS = [
         ]
       }
     ]
-  }
+  }*/
 ];
 
 @Injectable()

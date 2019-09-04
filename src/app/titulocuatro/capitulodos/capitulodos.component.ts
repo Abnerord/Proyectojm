@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
+import {VariablesglobalesService} from '../../variablesglobales.service';
 
 @Component({
   selector: 'app-capitulodos',
@@ -37,8 +39,8 @@ puntuacion = 0;
 //colorm, guarda el color correspondiente al nivel de madurez (por default es rojo danger o el nivel mas bajo),
 //ver mas, es la variable que se utiliza para reducir la descripcion.
 //recomendacion, guarda las recomendaciones generales de todo el articulo (por default esta vacia) 
-articulos = [{articulo:"Articulo 61. Elaboración de Instructivos y Circulares",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" las entidades de intermediación financiera, administradores y participantes del SIPARD, entidades públicas de intermediación financiera y las entidades de apoyo y servicios conexos, deben establecer acciones para el desarrollo, implementación y mantenimiento del programa de seguridad cibernética y de la información.",vermas:"Ver mas..",recomendaciones:""},
-            {articulo:"Articulo 62. Plazo de Adecuación",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"las entidades de intermediación financiera, administradores y participantes, deben contar con una estructura gerencial y funciones de control de seguridad cibernética y de la información, acordes a su naturaleza, tamaño, complejidad, perfil de riesgo e importancia sistémica.",vermas:"Ver mas..",recomendaciones:""},
+articulos = [{articulo:"Articulo 61. Elaboración de Instructivos y Circulares",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:"El banco central y la superintendencia de bancos, deberán elaborar los instructivos y circulares con los lineamientos que consideren necesarios para la aplicación de este reglamento.",vermas:"Ver mas..",recomendaciones:"",numero:61},
+            {articulo:"Articulo 62. Plazo de Adecuación",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"las entidades de intermediación financiera, los administradores y participantes del sipard, las entidades públicas de intermediación financiera y las entidades de apoyo y servicios conexos, deben ajustarse a las disposiciones contenidas en este reglamento.",vermas:"Ver mas..",recomendaciones:"",numero:62},
        ];
 
 //preguntas es el array que guarda las preguntas de cada articulo
@@ -50,15 +52,15 @@ articulos = [{articulo:"Articulo 61. Elaboración de Instructivos y Circulares",
 //progres calcula el porcentaje de la barra de progreso.
 //currenRate guarda el nivel de madurez de la pregunta.
 //recomendaciones, guarda las tres recomendaciones de cada pregunta. 
-preguntas = [[{pregunta :"¿Verificar que banco central aprueba los instructivos necesarios.?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.1","hola2.1","hola3.1"]},
-              {pregunta:"¿Verificar que las versiones de los reglamentos elaboración por banco central y la superiintentencia de bancos esten vigentes y actualizadas?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.2","hola2.2","hola3.2"]},
+preguntas = [[{pregunta :"¿Verificar que banco central aprueba los instructivos necesarios.?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Informar inmediatamente sobre la inexistencia de instructivos para la prueba.", "Los instructivos no se aplican de forma adecuada para la prueba.", "Monitorear las cantidades de insumos necesarios."]},
+              {pregunta:"¿Verificar que las versiones de los reglamentos elaboración por banco central y la superiintentencia de bancos esten vigentes y actualizadas?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Informar sobre el descontrol de versionamiento de los reglamentos, o inexistencias de los mismos.", "Los reglamentos se encuentran actualizados, pero no están autorizados.", "Tener un control de versiones al día por cada reglamento creado."]},
             ],[
-              {pregunta:"¿Verificar que las entidades se ajusten al reglamento como minimo un año, despues de habler entrado en vigencia.?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:" ¿Verificar que la resulución se publique de forma masiva a nivel nacional?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
+              {pregunta:"¿Verificar que las entidades se ajusten al reglamento como minimo un año, despues de habler entrado en vigencia.?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Notificar a las autoridades en caso de que las entidades no se encuentren ajustadas al reglamento y no cuente con el mínimo establecido.", "Las entidades no cuentan con el tiempo mínimo establecido y se encuentran ajustadas al reglamento.", "Monitorear el cumplimento del reglamento."]},
+                    {pregunta:" ¿Verificar que la resulución se publique de forma masiva a nivel nacional?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["",  "", ""]},
 
             ] ]
 
-constructor(config: NgbTabsetConfig) {// customize default values of tabsets used by this component tree
+constructor(config: NgbTabsetConfig,private router: Router,public bd: VariablesglobalesService) {// customize default values of tabsets used by this component tree
   config.justify = 'center';
   config.type = 'pills'; }
 
@@ -182,7 +184,34 @@ constructor(config: NgbTabsetConfig) {// customize default values of tabsets use
     }  
       
     }
+    guardar(){
 
+      let year = this.fecha.year;
+      let month = this.fecha.month;
+      let day = this.fecha.day;
+      let date = year+"-"+month+"-"+day;
+         
+      let idart = 0;
+      
+      for(let key in this.articulos){
+        this.bd.ingresoArticulo(this.articulos[key].articulo,this.articulos[key].descripcion,this.articulos[key].madurez,this.articulos[key].recomendaciones,
+          this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero).subscribe((data: Response)=>{
+           
+            for(let k in data){
+              idart = data[k];
+              }
+                for(let x in this.preguntas[key]){
+                  this.bd.ingresoPregunta(this.preguntas[key][x].pregunta,this.articulos[key].numero,this.preguntas[key][x].currentRate,this.preguntas[key][x].progres,idart).subscribe((data: Response)=>{})
+                }
+                  
+        
+          })
+
+      }
+
+      this.router.navigate(['/dashboard']);
+
+      }
   ngOnInit() {
   }
 

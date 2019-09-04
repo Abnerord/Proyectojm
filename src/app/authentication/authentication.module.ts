@@ -9,6 +9,7 @@ import { LockScreenComponent } from './lock-screen/lock-screen.component';
 
 import {LoginService} from './login.service';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +18,7 @@ import {LoginService} from './login.service';
     ReactiveFormsModule
   ],
   providers:[
-    LoginService
+    LoginService,
   ],
   declarations: [ForgotComponent, LockScreenComponent]
 })

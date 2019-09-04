@@ -5,7 +5,7 @@
       <div class="col-sm-12">
         <!-- Authentication card start -->
         <div class="login-card card-body auth-body">
-          <form class="md-float-material" #f="ngForm">
+          <form class="md-float-material" (ngSubmit)="log(f)" #f="ngForm" ngNativeValidate>
            <!-- <div class="text-center">
               <img src="assets/images/auth/logo.png" alt="logo.png">
             </div>-->
@@ -15,7 +15,7 @@
                   <h3 class="text-center txt-primary">Login</h3>
                 </div>
               </div>
-              <p class="text-inverse b-b-default text-center p-b-5">Bienvenido. Ingrese el Usuario, Password y la Empresa</p>
+              <p class="text-inverse b-b-default text-center p-b-5">Bienvenido</p>
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Username" ngModel name="nombre" required>
                 <span class="md-line"></span>
@@ -24,30 +24,28 @@
                 <input type="password" class="form-control" placeholder="password"  ngModel name="password" required>
                 <span class="md-line"></span>
               </div>
-              <div class="row m-t-25 text-left">
+              <div *ngIf="anuncio" class="text-danger">
+                <b>Error al iniciar sesión</b> 
+             </div>
+              <div class="row m-t-25 text-left" *ngIf="validacion">
                 <div class="col-sm-6 col-xs-12">
                     <label>
-                      <select class="browser-default custom-select">
-                          <option value="opt1">Elegir Empresa</option>
-                          <option value="opt2">Type 2</option>
-                          <option value="opt3">Type 3</option>
-                          <option value="opt4">Type 4</option>
-                          <option value="opt5">Type 5</option>
-                          <option value="opt6">Type 6</option>
-                          <option value="opt7">Type 7</option>
-                          <option value="opt8">Type 8</option>
+                      <select class="browser-default custom-select" ngModel name="select" (click)="click()">
+                          <option *ngFor="let emp of empresas" [value]="emp.nombre">{{emp.nombre}}</option>
                       </select>
                     </label>
                 
                 </div>
                 <div class="col-sm-6 col-xs-12 forgot-phone text-right">
-                  <!--  <a [routerLink]="['/authentication/forgot']" class="text-right f-w-600 text-inverse"> Forget Password?</a>-->
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Registrar Empresa</button>
+                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="registro()" >Registrar Empresa</button>
                 </div>
               </div>
+              <div *ngIf="elegir" class="text-danger">
+                <b>Debe elegir una empresa</b> 
+             </div>
               <div class="row m-t-30">
                 <div class="col-md-12">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)=" log(f)">LOGIN</button>
+                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" > <span *ngIf="!validacion">Autenticar</span> <span *ngIf="validacion">Ingresar</span> </button>
                 </div>
               </div>
             </div>

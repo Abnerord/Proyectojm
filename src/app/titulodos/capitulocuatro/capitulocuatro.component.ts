@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
+import {VariablesglobalesService} from '../../variablesglobales.service';
 
 @Component({
   selector: 'app-capitulocuatro',
@@ -37,9 +39,9 @@ export class CapitulocuatroComponent implements OnInit {
   //colorm, guarda el color correspondiente al nivel de madurez (por default es rojo danger o el nivel mas bajo),
   //ver mas, es la variable que se utiliza para reducir la descripcion.
   //recomendacion, guarda las recomendaciones generales de todo el articulo (por default esta vacia) 
- articulos = [{articulo:"Articulo 44. Estándares Internacionales",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" las entidades de intermediación financiera, administradores y participantes del SIPARD, entidades públicas de intermediación financiera y las entidades de apoyo y servicios conexos, deben establecer acciones para el desarrollo, implementación y mantenimiento del programa de seguridad cibernética y de la información.",vermas:"Ver mas..",recomendaciones:""},
-              {articulo:"Articulo 45. Estándares Facilitadores del Cumplimiento de la norma PCI-DSS",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"las entidades de intermediación financiera, administradores y participantes, deben contar con una estructura gerencial y funciones de control de seguridad cibernética y de la información, acordes a su naturaleza, tamaño, complejidad, perfil de riesgo e importancia sistémica.",vermas:"Ver mas..",recomendaciones:""},
-             ];
+  articulos = [{articulo:"Articulo 44. Estándares Internacionales",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" Se deben cumplir con lo siguiente: a.	Proteger los datos del cliente y facilitar la adopción de medidas de seguridad uniformes, apoyados en la norma de seguridad de datos. b.	Asegurar la protección en la administración, procesamiento y transmisión. c.	Aplicar los requerimientos de seguridad y los procedimientos de evaluación de los proveedores de sistemas de aplicaciones de pago. d.	Reforzar los controles de seguridad de los ambientes locales e infraestructuras relacionadas que interactúen con la red SWIFT.",vermas:"Ver mas..",recomendaciones:"",numero:44},
+  {articulo:"Articulo 45. Estándares Facilitadores del Cumplimiento de la norma PCI-DSS",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"se debe fortalecer la protección de los datos trasmitidas desde el punto de interacción, se debe reforzar los controles de seguridad física y lógica.",vermas:"Ver mas..",recomendaciones:"",numero:45},
+ ];
  
 //preguntas es el array que guarda las preguntas de cada articulo
 //es importante resaltar que los segmentos de preguntas deben ir en el orden en el que se ingresaron los articulos en la variable articulos.
@@ -50,21 +52,21 @@ export class CapitulocuatroComponent implements OnInit {
 //progres calcula el porcentaje de la barra de progreso.
 //currenRate guarda el nivel de madurez de la pregunta.
 //recomendaciones, guarda las tres recomendaciones de cada pregunta. 
- preguntas = [[{pregunta :"¿Las tarjetas de pagos de los clientes cuentan con protección de ciberseguridad?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.1","hola2.1","hola3.1"]},
-                {pregunta:"¿El cliente cuenta con protección de acceso hacia sus datos a través de un PIN?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1.2","hola2.2","hola3.2"]},
-                {pregunta:"¿Se encuentra asegurado bajo la norma de seguridad para las aplicaciones de pago (PA-DSS)?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                {pregunta:"¿La infraestructura se encuentra reforzada bajo el Marco de controles de Seguridad del Cliente (SWIFT-CSCF)?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                {pregunta:"¿Se actualizan de forma periódica los estándares establecidos en la corporación?",indice:5,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
-                    ],[
-                {pregunta:"¿Existe pruebas de seguridad de conexiones de P2PE para fortalecer su protección?",indice:6,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a el estándar PCI-DSS con la finalidad de manejo seguro de datos para la tarjeta de pagos.", "crear un programa de gestión de vulnerabilidades o adherir el plan a la CSIRT que exista.", "actualizar las políticas de seguridad, para mantener los datos a salvo, también se debe actualizar con capacitaciones a los usuarios."]},
-                      {pregunta:" ¿Existe reforzamiento y control de seguridad física y lógica en los procesos de producción?",indice:7,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["establecer estrategia de seguridad para el monitoreo y control de acceso, en las áreas.", "plan de contingencia ante violaciones de seguridad, como el cierre de inmediato activación de protocolos de seguridad.", "aplicar mejora continua, realizar pruebas de estrés y evaluar el rendimiento"]},
-                      {pregunta:"¿Los controles de seguridad son analizados para proporcionar robustez a los controles?",indice:8,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear una política de seguridad para la aplicación de métodos de seguridad como tokens, capchat, etc.", "capacitación y concientización de usuarios.", "adherirse a nuevas metodologías y controles de inicio de Sesión. Estandarizar estos controles."]},
-                      {pregunta:"¿Cuenta con protección de datos a los propietarios de tarjetas?",indice:9,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear una entidad que regule esta acciones, o asignarle a el oficial de seguridad.", "preparar y capacitar a la entidad que regulara.", "Asignación de roles y responsabilidades."]},
-                      {pregunta:"¿Cuenta con medidas sólidas de control de Accesos?",indice:10,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
-                
-              ] ]
+preguntas = [[{pregunta :"¿Las tarjetas de pagos de los clientes cuentan con protección de ciberseguridad?",indice:1,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer planes de seguridad bajo normas Internacionales y establecer políticas de seguridad", "Las aplicaciones que se realicen deben cumplir las políticas de seguridad establecidas", "Realizar actualizaciones de políticas de seguridad anualmente"]},
+{pregunta:"¿El cliente cuenta con protección de acceso hacia sus datos a través de un PIN?",indice:2,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:[""," "," "]},
+{pregunta:"¿Se encuentra asegurado bajo la norma de seguridad para las aplicaciones de pago (PA-DSS)?",indice:3,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer políticas de seguridad bajo la norma PA-DSS", "Corroborar que las políticas sean cumplidas", "Realizar actualizaciones de políticas de seguridad anualmente"]},
+{pregunta:"¿La infraestructura se encuentra reforzada bajo el Marco de controles de Seguridad del Cliente (SWIFT-CSCF)?",indice:4,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer políticas de seguridad bajo la norma SWIFT-CSCF", "Corroborar que las políticas sean cumplidas", "Actualizar los manuales de seguridad, deben estar apegados a la necesidad de la empresa"]},
+{pregunta:"¿Se actualizan de forma periódica los estándares establecidos en la corporación?",indice:5,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["Establecer planes y políticas de seguridad para actualizar los manuales", "Corroborar que las políticas sean cumplidas", "Actualizar los manuales y políticas de seguridad"]}
+    ],[
+{pregunta:"¿Existe pruebas de seguridad de conexiones de P2PE para fortalecer su protección?",indice:6,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a el estándar PCI-DSS con la finalidad de manejo seguro de datos para la tarjeta de pagos.", "crear un programa de gestión de vulnerabilidades o adherir el plan a la CSIRT que exista.", "actualizar las políticas de seguridad, para mantener los datos a salvo, también se debe actualizar con capacitaciones a los usuarios."]},
+      {pregunta:" ¿Existe reforzamiento y control de seguridad física y lógica en los procesos de producción?",indice:7,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["establecer estrategia de seguridad para el monitoreo y control de acceso, en las áreas.", "plan de contingencia ante violaciones de seguridad, como el cierre de inmediato activación de protocolos de seguridad.", "aplicar mejora continua, realizar pruebas de estrés y evaluar el rendimiento"]},
+      {pregunta:"¿Los controles de seguridad son analizados para proporcionar robustez a los controles?",indice:8,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear una política de seguridad para la aplicación de métodos de seguridad como tokens, capchat, etc.", "capacitación y concientización de usuarios.", "adherirse a nuevas metodologías y controles de inicio de Sesión. Estandarizar estos controles."]},
+      {pregunta:"¿Cuenta con protección de datos a los propietarios de tarjetas?",indice:9,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear una entidad que regule esta acciones, o asignarle a el oficial de seguridad.", "preparar y capacitar a la entidad que regulara.", "Asignación de roles y responsabilidades."]},
+      {pregunta:"¿Cuenta con medidas sólidas de control de Accesos?",indice:10,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:[""," "," "]}
+
+] ]
   
-  constructor(config: NgbTabsetConfig) {// customize default values of tabsets used by this component tree
+  constructor(config: NgbTabsetConfig,private router: Router,public bd: VariablesglobalesService) {// customize default values of tabsets used by this component tree
     config.justify = 'center';
     config.type = 'pills'; }
 
@@ -189,6 +191,34 @@ export class CapitulocuatroComponent implements OnInit {
         
       }
 
+      guardar(){
+
+        let year = this.fecha.year;
+        let month = this.fecha.month;
+        let day = this.fecha.day;
+        let date = year+"-"+month+"-"+day;
+           
+        let idart = 0;
+        
+        for(let key in this.articulos){
+          this.bd.ingresoArticulo(this.articulos[key].articulo,this.articulos[key].descripcion,this.articulos[key].madurez,this.articulos[key].recomendaciones,
+            this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero).subscribe((data: Response)=>{
+             
+              for(let k in data){
+                idart = data[k];
+                }
+                  for(let x in this.preguntas[key]){
+                    this.bd.ingresoPregunta(this.preguntas[key][x].pregunta,this.articulos[key].numero,this.preguntas[key][x].currentRate,this.preguntas[key][x].progres,idart).subscribe((data: Response)=>{})
+                  }
+                    
+          
+            })
+  
+        }
+  
+        this.router.navigate(['/Titulodos/Capitulocinco']);
+  
+        }
   ngOnInit() {
   }
 

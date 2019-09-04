@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
+import {VariablesglobalesService} from '../../variablesglobales.service';
 
 @Component({
   selector: 'app-capitulouno',
@@ -37,9 +39,9 @@ puntuacion = 0;
 //colorm, guarda el color correspondiente al nivel de madurez (por default es rojo danger o el nivel mas bajo),
 //ver mas, es la variable que se utiliza para reducir la descripcion.
 //recomendacion, guarda las recomendaciones generales de todo el articulo (por default esta vacia) 
-articulos = [{articulo:"Artículo 49. Consejo Sectorial",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:" las entidades de intermediación financiera, administradores y participantes del SIPARD, entidades públicas de intermediación financiera y las entidades de apoyo y servicios conexos, deben establecer acciones para el desarrollo, implementación y mantenimiento del programa de seguridad cibernética y de la información.",vermas:"Ver mas..",recomendaciones:""},
-            {articulo:"Artículo 50.Facultades",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"las entidades de intermediación financiera, administradores y participantes, deben contar con una estructura gerencial y funciones de control de seguridad cibernética y de la información, acordes a su naturaleza, tamaño, complejidad, perfil de riesgo e importancia sistémica.",vermas:"Ver mas..",recomendaciones:""},
-            {articulo:"Artiículo 51. Funcionamiento",subtotal:0,subpuntuacion:0,color:"danger 3",madurez:0,colorm:"danger",descripcion:" las políticas del programa deben ser sometida al consejo u órgano societario competente, para su aprobación por parte del comité funcional de seguridad cibernética a mas tardar entre el tercer y sexto mes de entrar en vigencia.",vermas:"Ver mas..",recomendaciones:""}];
+articulos = [{articulo:"Artículo 49. Consejo Sectorial",subtotal:0,subpuntuacion:0,color:"danger",madurez:0,colorm:"danger",descripcion:"Se crea el consejo sectorial para la respuesta a incidentes de seguridad cibernética del sector financiero y estará integrado por:a.	El gobernador del banco central b.	El superintendente de bancos c.	El superintendente del mercado de valores d.	El contador del banco central e.	El subgerente de sistema e innovación tecnológica del banco central  f.	El presidente de la asociación de bancos comerciales la republica dominica  g.	El presidente de la liga de asociaciones de ahorros y prestamos dominicanos h.	El presidente de asociación de bancos de ahorro y créditos i.	El director del equipo de respuesta a incidentes de seguridad cibernética",vermas:"Ver mas..",recomendaciones:"",numero:49},
+            {articulo:"Artículo 50.Facultades",subtotal:0,subpuntuacion:0,color:"danger",progres:0,madurez:0,colorm:"danger",descripcion:"a.	Definir las prioridades y lineamientos para la coordinación del equipo de respuesta e incidentes  b.	Dar seguimiento a las actividades del equipo de respuesta  c.	Coordinar los esfuerzos de cooperación entre las entidades de intermediación financiera, los administradores y participantes d.	Definir el marco de cooperación y comunicación del equipo de respuesta a incidentes de seguridad cibernética e.	Definir el marco de cooperación y comunicación f.	Definir los protocolos de comunicaciones hacia los demás sectores económicos",vermas:"Ver mas..",recomendaciones:"",numero:50},
+            {articulo:"Artiículo 51. Funcionamiento",subtotal:0,subpuntuacion:0,color:"danger 3",madurez:0,colorm:"danger",descripcion:" El consejo sectorial deberá reunirse de manera ordinaria previa convocatoria de su presidente. Se deben presentar por lo menos una vez por trimestre.",vermas:"Ver mas..",recomendaciones:"",numero:51}];
 
 //preguntas es el array que guarda las preguntas de cada articulo
 //es importante resaltar que los segmentos de preguntas deben ir en el orden en el que se ingresaron los articulos en la variable articulos.
@@ -62,19 +64,19 @@ preguntas = [[{pregunta :"¿los miebros estan del consejo estan segementadas?",i
               {pregunta:"¿El presidente de la Asociación de Bancos de Ahorro y Crédito y Corporaciones  de Crédito?",indice:10,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["asignar un presidente de asociaciones de ahorro y créditos", "asignación de responsabilidades y roles a cada consejo.", "capacitación constante."]},
               {pregunta:"¿ El director del Equipo de Respuesta a Incidentes de Seguridad Cibernética?",indice:11,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["asignar un director para estos incidentes.", "asignación de responsabilidades y roles a cada consejo.", "capacitación constante."]}
                   ],[
-              {pregunta:"¿definicion las prioridades y lineamientos de CSIRT?",indice:12,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:" ¿Seguimiento al CSIRT entorno a sus actividades y funcionamientos?",indice:13,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿coordinación de esfuerzos entre entes financieros y CSIRT?",indice:14,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿Marco de comuniacion entre la CSIRT Y SIPARD?",indice:15,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿Marco de cooperacion y comunicación  con entes externos definidas por la ley?",indice:16,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]},
-                    {pregunta:"¿protocolos de comunicación con los demas sectores economicos y sociales de la republica de Guatemala.?",indice:17,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
+              {pregunta:"¿definicion las prioridades y lineamientos de CSIRT?",indice:12,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear un plan estratégico para definir los lineamientos de riesgos", "mejora y revisión constante de nuevas amenazas", "capacitación constante."]},
+                    {pregunta:" ¿Seguimiento al CSIRT entorno a sus actividades y funcionamientos?",indice:13,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["realizar una evaluación en el marco de actividades y sus funcionamientos", "aplicar estándares para el manejo de incidentes.", "capacitación constante."]},
+                    {pregunta:"¿coordinación de esfuerzos entre entes financieros y CSIRT?",indice:14,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear un consejo para regular la comunicación entres estas entidades", "crear un plan de coordinación entre las entidades para el manejo de riesgos e incidentes", "capacitación constante."]},
+                    {pregunta:"¿Marco de comuniacion entre la CSIRT Y SIPARD?",indice:15,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear un consejo para regular la comunicación entres estas entidades", "crear un plan de coordinación entre las entidades para el manejo de riesgos e incidentes", "capacitación constante."]},
+                    {pregunta:"¿Marco de cooperacion y comunicación  con entes externos definidas por la ley?",indice:16,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["adherirse a las regulaciones del país.", "crear una entidad que regule las acciones entorno a las regulaciones del país.", "capacitación y concientización a los usuarios."]},
+                    {pregunta:"¿protocolos de comunicación con los demas sectores economicos y sociales de la republica de Guatemala.?",indice:17,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear una estrategia para la comunicación segura entre los sectores", "capacitación a los usuarios.", "mejora continua a nuevas metodologías de comunicación"]}
               
             ],[
-              {pregunta:"¿el consejo se reune de manera ordinaria y una vez a cada trimestre, por lo minimo y responde a el presidente, solicitud de reuniones imprevistas?",indice:18,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["hola1","hola2","hola3"]}
+              {pregunta:"¿el consejo se reune de manera ordinaria y una vez a cada trimestre, por lo minimo y responde a el presidente, solicitud de reuniones imprevistas?",indice:18,validacion:false,color:"danger",currentRate:0,progres:0,recomendaciones:["crear una política donde se responda a reuniones.", "adherirse a toda entidad a la política."," "]}
               
             ] ]
 
-constructor(config: NgbTabsetConfig) {// customize default values of tabsets used by this component tree
+constructor(config: NgbTabsetConfig,private router: Router,public bd: VariablesglobalesService) {// customize default values of tabsets used by this component tree
   config.justify = 'center';
   config.type = 'pills'; }
 
@@ -198,7 +200,34 @@ constructor(config: NgbTabsetConfig) {// customize default values of tabsets use
     }  
       
     }
+    guardar(){
 
+      let year = this.fecha.year;
+      let month = this.fecha.month;
+      let day = this.fecha.day;
+      let date = year+"-"+month+"-"+day;
+         
+      let idart = 0;
+      
+      for(let key in this.articulos){
+        this.bd.ingresoArticulo(this.articulos[key].articulo,this.articulos[key].descripcion,this.articulos[key].madurez,this.articulos[key].recomendaciones,
+          this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero).subscribe((data: Response)=>{
+           
+            for(let k in data){
+              idart = data[k];
+              }
+                for(let x in this.preguntas[key]){
+                  this.bd.ingresoPregunta(this.preguntas[key][x].pregunta,this.articulos[key].numero,this.preguntas[key][x].currentRate,this.preguntas[key][x].progres,idart).subscribe((data: Response)=>{})
+                }
+                  
+        
+          })
+
+      }
+
+      this.router.navigate(['/Titulotres/Capitulodos']);
+
+      }
   ngOnInit() {
   }
 
