@@ -19,10 +19,6 @@ export class WithSocialComponent implements OnInit {
 
   registro(){
     this.router.navigate(['/authentication/lock-screen']);
-    for (let key in this.empresas){
-      let indice = toInteger(this.empresas[key].id) + 1;
-      this.user.usuariologin.id = indice ;
-    }
     
   }
 
@@ -58,7 +54,7 @@ export class WithSocialComponent implements OnInit {
           this.elegir = true;
       }else{
         this.elegir = false;
-        this.router.navigate(['/Titulouno/Capitultres']);
+        this.router.navigate(['/Titulouno/Capitulotres']);
         this.user.usuariologin.empresa = form.value.select; 
         for (let key in this.empresas){
           if ( this.empresas[key].nombre == this.user.usuariologin.empresa){

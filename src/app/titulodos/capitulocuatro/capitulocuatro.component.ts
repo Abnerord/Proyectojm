@@ -202,7 +202,7 @@ preguntas = [[{pregunta :"¿Las tarjetas de pagos de los clientes cuentan con pr
         
         for(let key in this.articulos){
           this.bd.ingresoArticulo(this.articulos[key].articulo,this.articulos[key].descripcion,this.articulos[key].madurez,this.articulos[key].recomendaciones,
-            this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero).subscribe((data: Response)=>{
+            this.articulos[key].subtotal,this.articulos[key].subpuntuacion,this.bd.usuariologin.id,date,this.articulos[key].numero,this.articulos[key].colorm).subscribe((data: Response)=>{
              
               for(let k in data){
                 idart = data[k];

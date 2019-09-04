@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {VariablesglobalesService} from '../variablesglobales.service';
+import { DayPickerComponent } from 'ngx-bootstrap';
 declare const $: any;
 declare var Morris: any;
 
@@ -9,9 +11,26 @@ declare var Morris: any;
 
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+
+  articulos: any[] = [];
+
+
+  constructor(public bd: VariablesglobalesService) { }
 
   ngOnInit() {
+
+    let dat = []; 
+
+      console.log(this.bd.usuariologin);
+    this.bd.Articulo(this.bd.usuariologin.id).subscribe((data: Response)=>{
+       
+      for(let key in data){
+        this.articulos.push(data[key]);
+        dat.push({ARTICULO:data[key].numero,nivel:data[key].madurez})
+      }      
+  console.log(dat);
+    })
+
     setTimeout(() => {
       $('.resource-barchart1').sparkline([5, 6, 9, 7, 8, 4, 6], {
         type: 'bar',
@@ -29,51 +48,14 @@ export class DashboardComponent implements OnInit {
         tooltipClassname: 'abc'
       });
 
-      Morris.Area({
+      Morris.Bar({
         element: 'morris-extra-area',
-        data: [{
-          period: '2010',
-          iphone: 0,
-          ipad: 0,
-          itouch: 0
-        }, {
-          period: '2011',
-          iphone: 50,
-          ipad: 15,
-          itouch: 5
-        }, {
-          period: '2012',
-          iphone: 20,
-          ipad: 50,
-          itouch: 65
-        }, {
-          period: '2013',
-          iphone: 60,
-          ipad: 12,
-          itouch: 7
-        }, {
-          period: '2014',
-          iphone: 30,
-          ipad: 20,
-          itouch: 120
-        }, {
-          period: '2015',
-          iphone: 25,
-          ipad: 80,
-          itouch: 40
-        }, {
-          period: '2016',
-          iphone: 10,
-          ipad: 10,
-          itouch: 10
-        }
-
-
-        ],
+        data: dat,
         lineColors: ['#fb9678', '#7E81CB', '#01C0C8'],
-        xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['Site A', 'Site B', 'Site C'],
+        xLabels:"second",
+        xkey: 'ARTICULO',
+        ykeys: ['nivel', 'ipad', 'itouch'],
+        labels: ['Madurez A', 'Madurez B', 'Madurez C'],
         pointSize: 0,
         lineWidth: 0,
         resize: true,

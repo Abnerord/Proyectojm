@@ -18,10 +18,11 @@ export class LockScreenComponent implements OnInit {
 
     this.login.inEmp(form.value.nombre,form.value.direccion,form.value.correo,form.value.telefono).subscribe((data:Response)=>{
       for(let key in data){
-
-        if(data[key] == "OK"){
-          this.router.navigate(['/Titulouno/Capitultres']);
+        console.log(data[key])
+        if(data[key] != "Error al registrar el evento"){
+          this.router.navigate(['Titulouno/Capitulotres']);
           this.user.usuariologin.empresa = form.value.nombre;
+          this.user.usuariologin.id = data[key];
           console.log(this.user.usuariologin)
         }
       }

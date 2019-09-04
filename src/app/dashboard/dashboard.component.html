@@ -1,6 +1,37 @@
 <div class="row">
+  <div  class="col-md-12 col-xl-12">
+    <app-card [title]="'Background Utilities'" [classHeader]="true" [blockClass]="'table-border-style'">
+        <span class="code-header">Regular table background variants are not available with the inverse table, however, you may use <code>text or background utilities</code> to achieve similar styles.</span>
+        <div class="table-responsive">
+            <table class="table table-inverse">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Articulo</th>
+                <th>Madurez</th>
+                <th>Recomendacion</th>
+                <th>Seguridad</th>
+                <th>Color</th>
+                <th>Fecha</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let art of articulos; let i = index"   [ngClass]="{ 'bg-warning':art.colorm == 'warning', 'bg-success':art.colorm == 'success','bg-primary':art.colorm == 'primary','bg-danger':art.colorm == 'danger'}" >
+                <th scope="row">{{i}}</th>
+                <td>{{art.nombre}}</td>
+                <td>{{art.madurez}}</td>
+                <td>{{art.recomendacion}}</td>
+                <td>{{art.sub_total}}</td>
+                <td>{{art.colorm}}</td>
+                <td>{{art.fecha}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+      </app-card>
+    </div>
   <div class="col-md-12 col-xl-4">
-    <!-- table card start -->
+        <!-- table card start -->
     <div class="card table-card">
       <div class="">
         <div class="row-table">
@@ -145,14 +176,14 @@
     </div>
     <!-- widget-success-card end -->
   </div>
-
+<!---
   <div class="col-lg-4">
     <div class="row">
       <div class="col-lg-12">
         <div class="card card-border-primary">
           <div class="card-header">
             <h5>John Doe </h5>
-            <!-- <span class="label label-default f-right"> 28 January, 2015 </span> -->
+             <span class="label label-default f-right"> 28 January, 2015 </span> aqui se marca
             <div ngbDropdown class="dropdown-secondary dropdown f-right">
               <button ngbDropdownToggle class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Overdue</button>
               <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown6" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -162,7 +193,7 @@
                 <a class="dropdown-item waves-light waves-effect active" href="javascript:"><span class="point-marker bg-success"></span>On Hold</a>
                 <a class="dropdown-item waves-light waves-effect" href="javascript:"><span class="point-marker bg-info"></span>Canceled</a>
               </div>
-              <!-- end of dropdown menu -->
+               end of dropdown menu 
               <span class="f-left m-r-5 text-inverse">Status : </span>
             </div>
           </div>
@@ -188,7 +219,7 @@
             </div>
             <div class="task-board m-0">
               <a href="javascript:" class="btn btn-info btn-mini b-none"><i class="icofont icofont-eye-alt m-0"></i></a>
-              <!-- end of dropdown-secondary -->
+              end of dropdown-secondary 
               <div ngbDropdown class="dropdown-secondary dropdown">
                 <button ngbDropdownToggle class="btn btn-info btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
                 <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -198,20 +229,20 @@
                   <a class="dropdown-item waves-light waves-effect" href="javascript:"><i class="icofont icofont-spinner-alt-5"></i> Edit Invoice</a>
                   <a class="dropdown-item waves-light waves-effect" href="javascript:"><i class="icofont icofont-ui-edit"></i> Remove Invoice</a>
                 </div>
-                <!-- end of dropdown menu -->
+                end of dropdown menu 
               </div>
-              <!-- end of seconadary -->
+             end of seconadary 
             </div>
-            <!-- end of pull-right class -->
+            end of pull-right class 
           </div>
-          <!-- end of card-footer -->
+         end of card-footer 
         </div>
       </div>
       <div class="col-lg-12">
         <div class="card card-border-primary">
           <div class="card-header">
             <h5>John Doe </h5>
-            <!-- <span class="label label-default f-right"> 28 January, 2015 </span> -->
+             <span class="label label-default f-right"> 28 January, 2015 </span> 
             <div ngbDropdown class="dropdown-secondary dropdown f-right">
               <button ngbDropdownToggle class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Overdue</button>
               <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown6" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -221,7 +252,7 @@
                 <a class="dropdown-item waves-light waves-effect active" href="javascript:"><span class="point-marker bg-success"></span>On Hold</a>
                 <a class="dropdown-item waves-light waves-effect" href="javascript:"><span class="point-marker bg-info"></span>Canceled</a>
               </div>
-              <!-- end of dropdown menu -->
+             end of dropdown menu 
               <span class="f-left m-r-5 text-inverse">Status : </span>
             </div>
           </div>
@@ -247,7 +278,7 @@
             </div>
             <div class="task-board m-0">
               <a href="javascript:" class="btn btn-info btn-mini b-none"><i class="icofont icofont-eye-alt m-0"></i></a>
-              <!-- end of dropdown-secondary -->
+             end of dropdown-secondary 
               <div ngbDropdown class="dropdown-secondary dropdown">
                 <button ngbDropdownToggle class="btn btn-info btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
                 <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -257,18 +288,18 @@
                   <a class="dropdown-item waves-light waves-effect" href="javascript:"><i class="icofont icofont-spinner-alt-5"></i> Edit Invoice</a>
                   <a class="dropdown-item waves-light waves-effect" href="javascript:"><i class="icofont icofont-ui-edit"></i> Remove Invoice</a>
                 </div>
-                <!-- end of dropdown menu -->
+                end of dropdown menu 
               </div>
-              <!-- end of seconadary -->
+             end of seconadary 
             </div>
-            <!-- end of pull-right class -->
+            end of pull-right class 
           </div>
-          <!-- end of card-footer -->
+           end of card-footer 
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-8">
+  </div> -->
+  <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
         <button class="btn btn-primary btn-sm">Week</button>
@@ -280,6 +311,8 @@
       </div>
     </div>
   </div>
+  
+  <!--
   <div class="col-md-6 col-xl-3">
     <div class="card social-widget-card">
       <div class="card-block-big bg-facebook">
@@ -315,5 +348,5 @@
         <i class="icofont icofont-social-google-plus"></i>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
