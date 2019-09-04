@@ -20,14 +20,49 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     let dat = []; 
+    let nivel =[];
+    let mar =[];
+    let count = 0;
+    let numero = 0;
+    let contador = 0;
+    let i = 1;
 
       console.log(this.bd.usuariologin);
     this.bd.Articulo(this.bd.usuariologin.id).subscribe((data: Response)=>{
        
       for(let key in data){
+        
+        if(numero!= data[key].numero){
+              i = 0;
+               numero = data[key].numero
+               contador = dat.length;
+               dat.push({ARTICULO:data[key].numero,nivel1:data[key].madurez});
+
+        }else{
+          i++;
+
+          Object.defineProperty(dat[contador],'nivel'+String(i+1),{
+            enumerable: false,
+            configurable: false,
+            writable: false,
+            value: data[key].madurez
+          });
+
+          if(count <= i){
+            nivel.push('nivel'+String(count+1));
+            mar.push('Madurez '+String(count+1));
+            count++;
+          }
+
+          
+        }
+
+       
+
         this.articulos.push(data[key]);
-        dat.push({ARTICULO:data[key].numero,nivel:data[key].madurez})
+        
       }      
+  console.log(nivel);
   console.log(dat);
     })
 
@@ -54,8 +89,8 @@ export class DashboardComponent implements OnInit {
         lineColors: ['#fb9678', '#7E81CB', '#01C0C8'],
         xLabels:"second",
         xkey: 'ARTICULO',
-        ykeys: ['nivel', 'ipad', 'itouch'],
-        labels: ['Madurez A', 'Madurez B', 'Madurez C'],
+        ykeys: nivel,
+        labels: mar,
         pointSize: 0,
         lineWidth: 0,
         resize: true,

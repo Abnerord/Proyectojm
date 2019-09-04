@@ -1,29 +1,29 @@
 <div class="row">
   <div  class="col-md-12 col-xl-12">
-    <app-card [title]="'Background Utilities'" [classHeader]="true" [blockClass]="'table-border-style'">
-        <span class="code-header">Regular table background variants are not available with the inverse table, however, you may use <code>text or background utilities</code> to achieve similar styles.</span>
+    <app-card [title]="'Reporte'" [classHeader]="true" [blockClass]="'table-border-style'">
+        <span class="code-header"></span>
         <div class="table-responsive">
             <table class="table table-inverse">
               <thead>
               <tr>
                 <th>#</th>
                 <th>Articulo</th>
-                <th>Madurez</th>
-                <th>Recomendacion</th>
+                <th>Madurez</th>              
                 <th>Seguridad</th>
                 <th>Color</th>
                 <th>Fecha</th>
+                <th>Recomendacion</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let art of articulos; let i = index"   [ngClass]="{ 'bg-warning':art.colorm == 'warning', 'bg-success':art.colorm == 'success','bg-primary':art.colorm == 'primary','bg-danger':art.colorm == 'danger'}" >
-                <th scope="row">{{i}}</th>
+              <tr *ngFor="let art of articulos; let i = index"   [ngClass]="{ 'text-warning':art.colorm == 'warning', 'text-success':art.colorm == 'success','text-primary':art.colorm == 'primary','text-danger':art.colorm == 'danger'}" >
+                <th  scope="row">{{i}}</th>
                 <td>{{art.nombre}}</td>
                 <td>{{art.madurez}}</td>
-                <td>{{art.recomendacion}}</td>
                 <td>{{art.sub_total}}</td>
                 <td>{{art.colorm}}</td>
                 <td>{{art.fecha}}</td>
+                <td >{{art.recomendacion}}</td>
               </tr>
               </tbody>
             </table>
@@ -31,7 +31,7 @@
       </app-card>
     </div>
   <div class="col-md-12 col-xl-4">
-        <!-- table card start -->
+        <!-- table card start 
     <div class="card table-card">
       <div class="">
         <div class="row-table">
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <!-- table card end -->
+   table card end 
   </div>
   <div class="col-md-12 col-xl-4">
     <div class="card table-card">
@@ -145,7 +145,7 @@
     </div>
   </div>
   <div class="col-md-12 col-xl-4">
-    <!-- widget primary card start -->
+    widget primary card start 
     <div class="card table-card widget-primary-card">
       <div class="">
         <div class="row-table">
@@ -159,8 +159,8 @@
         </div>
       </div>
     </div>
-    <!-- widget primary card end -->
-    <!-- widget-success-card start -->
+    widget primary card end 
+     widget-success-card start 
     <div class="card table-card widget-success-card">
       <div class="">
         <div class="row-table">
@@ -174,7 +174,7 @@
         </div>
       </div>
     </div>
-    <!-- widget-success-card end -->
+     widget-success-card end -->
   </div>
 <!---
   <div class="col-lg-4">
@@ -302,9 +302,7 @@
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-primary btn-sm">Week</button>
-        <button class="btn btn-primary btn-sm">Month</button>
-        <button class="btn btn-primary btn-sm">Year</button>
+        <h5>Grafica comparativa del Nivel de Madurez</h5>
       </div>
       <div class="card-block">
         <div id="morris-extra-area"></div>
